@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.3 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
-// swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -module-name PXKit
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+// swift-compiler-version: Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)
+// swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -language-mode 6 -O -enable-experimental-feature DebugDescriptionMacro -module-name PXKit
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.4
 import Compression
 import CoreFoundation
 import CoreGraphics
@@ -20,1590 +20,1300 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-public struct Entry : Swift.Equatable {
-  public enum EntryType : Swift.Int {
+public struct Entry : Swift::Equatable {
+  public enum EntryType : Swift::Int {
     case file
     case directory
     case symlink
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init?(rawValue: Swift.Int)
-    #endif
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
+    public init?(rawValue: Swift::Int)
+    public typealias RawValue = Swift::Int
+    public var rawValue: Swift::Int {
       get
     }
   }
-  public func path(using encoding: Swift.String.Encoding) -> Swift.String
-  public var path: Swift.String {
+  public func path(using encoding: Swift::String.Foundation::Encoding) -> Swift::String
+  public var path: Swift::String {
     get
   }
-  public var fileAttributes: [Foundation.FileAttributeKey : Any] {
+  public var fileAttributes: [Foundation::FileAttributeKey : Any] {
     get
   }
-  public var checksum: PXKit.CRC32 {
+  public var checksum: PXKit::CRC32 {
     get
   }
-  public var type: PXKit.Entry.EntryType {
+  public var type: PXKit::Entry.PXKit::EntryType {
     get
   }
-  public var compressedSize: Swift.Int {
+  public var compressedSize: Swift::Int {
     get
   }
-  public var uncompressedSize: Swift.Int {
+  public var uncompressedSize: Swift::Int {
     get
   }
-  public static func == (lhs: PXKit.Entry, rhs: PXKit.Entry) -> Swift.Bool
+  public static func == (lhs: PXKit::Entry, rhs: PXKit::Entry) -> Swift::Bool
 }
-extension PXKit.Archive {
-  #if compiler(>=5.3) && $NonescapableTypes
-  final public func addEntry(with path: Swift.String, relativeTo baseURL: Foundation.URL, compressionMethod: PXKit.CompressionMethod = .none, bufferSize: Swift.UInt32 = defaultWriteChunkSize, progress: Foundation.Progress? = nil) throws
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  final public func addEntry(with path: Swift.String, type: PXKit.Entry.EntryType, uncompressedSize: Swift.UInt32, modificationDate: Foundation.Date = Date(), permissions: Swift.UInt16? = nil, compressionMethod: PXKit.CompressionMethod = .none, bufferSize: Swift.UInt32 = defaultWriteChunkSize, progress: Foundation.Progress? = nil, provider: (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data) throws
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  final public func remove(_ entry: PXKit.Entry, bufferSize: Swift.UInt32 = defaultReadChunkSize, progress: Foundation.Progress? = nil) throws
-  #endif
+extension PXKit::Archive {
+  final public func addEntry(with path: Swift::String, relativeTo baseURL: Foundation::URL, compressionMethod: PXKit::CompressionMethod = .none, bufferSize: Swift::UInt32 = defaultWriteChunkSize, progress: Foundation::Progress? = nil) throws
+  final public func addEntry(with path: Swift::String, type: PXKit::Entry.PXKit::EntryType, uncompressedSize: Swift::UInt32, modificationDate: Foundation::Date = Date(), permissions: Swift::UInt16? = nil, compressionMethod: PXKit::CompressionMethod = .none, bufferSize: Swift::UInt32 = defaultWriteChunkSize, progress: Foundation::Progress? = nil, provider: PXKit::Provider) throws
+  final public func remove(_ entry: PXKit::Entry, bufferSize: Swift::UInt32 = defaultReadChunkSize, progress: Foundation::Progress? = nil) throws
 }
 public protocol PXNetworkingDataResponseSerializerProtocol {
   associatedtype PXNetworkingSerializedObject
-  #if compiler(>=5.3) && $NonescapableTypes
-  var px_serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.Data?, (any Swift.Error)?) -> PXKit.PXNetworking.Result<Self.PXNetworkingSerializedObject> { get }
-  #endif
+  var px_serializeResponse: (Foundation::URLRequest?, Foundation::HTTPURLResponse?, Foundation::Data?, (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Self.PXNetworkingSerializedObject> { get }
 }
-extension PXKit.PXNetworking {
-  public struct DataResponseSerializer<Value> : PXKit.PXNetworkingDataResponseSerializerProtocol {
+extension PXKit::PXNetworking {
+  public struct DataResponseSerializer<Value> : PXKit::PXNetworkingDataResponseSerializerProtocol {
     public typealias PXNetworkingSerializedObject = Value
-    public var px_serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.Data?, (any Swift.Error)?) -> PXKit.PXNetworking.Result<Value>
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(serializeResponse: @escaping (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.Data?, (any Swift.Error)?) -> PXKit.PXNetworking.Result<Value>)
-    #endif
+    public var px_serializeResponse: (Foundation::URLRequest?, Foundation::HTTPURLResponse?, Foundation::Data?, (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Value>
+    public init(serializeResponse: @escaping (Foundation::URLRequest?, Foundation::HTTPURLResponse?, Foundation::Data?, (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Value>)
   }
 }
 public protocol PXNetworkingDownloadResponseSerializerProtocol {
   associatedtype PXNetworkingSerializedObject
-  #if compiler(>=5.3) && $NonescapableTypes
-  var px_serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.URL?, (any Swift.Error)?) -> PXKit.PXNetworking.Result<Self.PXNetworkingSerializedObject> { get }
-  #endif
+  var px_serializeResponse: (Foundation::URLRequest?, Foundation::HTTPURLResponse?, Foundation::URL?, (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Self.PXNetworkingSerializedObject> { get }
 }
-extension PXKit.PXNetworking {
-  public struct DownloadResponseSerializer<Value> : PXKit.PXNetworkingDownloadResponseSerializerProtocol {
+extension PXKit::PXNetworking {
+  public struct DownloadResponseSerializer<Value> : PXKit::PXNetworkingDownloadResponseSerializerProtocol {
     public typealias PXNetworkingSerializedObject = Value
-    public var px_serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.URL?, (any Swift.Error)?) -> PXKit.PXNetworking.Result<Value>
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(serializeResponse: @escaping (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.URL?, (any Swift.Error)?) -> PXKit.PXNetworking.Result<Value>)
-    #endif
+    public var px_serializeResponse: (Foundation::URLRequest?, Foundation::HTTPURLResponse?, Foundation::URL?, (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Value>
+    public init(serializeResponse: @escaping (Foundation::URLRequest?, Foundation::HTTPURLResponse?, Foundation::URL?, (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Value>)
   }
 }
-extension PXKit.PXNetworking.DataRequest {
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DataRequest {
   @discardableResult
-  public func response(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (PXKit.PXNetworking.DefaultDataResponse) -> Swift.Void) -> Self
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
+  public func response(queue: Dispatch::DispatchQueue? = nil, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DefaultDataResponse) -> Swift::Void) -> Self
   @discardableResult
-  public func response<T>(queue: Dispatch.DispatchQueue? = nil, responseSerializer: T, completionHandler: @escaping (PXKit.PXNetworking.DataResponse<T.PXNetworkingSerializedObject>) -> Swift.Void) -> Self where T : PXKit.PXNetworkingDataResponseSerializerProtocol
-  #endif
+  public func response<T>(queue: Dispatch::DispatchQueue? = nil, responseSerializer: T, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DataResponse<T.PXNetworkingSerializedObject>) -> Swift::Void) -> Self where T : PXKit::PXNetworkingDataResponseSerializerProtocol
 }
-extension PXKit.PXNetworking.DownloadRequest {
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DownloadRequest {
   @discardableResult
-  public func response(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (PXKit.PXNetworking.DefaultDownloadResponse) -> Swift.Void) -> Self
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
+  public func response(queue: Dispatch::DispatchQueue? = nil, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DefaultDownloadResponse) -> Swift::Void) -> Self
   @discardableResult
-  public func response<T>(queue: Dispatch.DispatchQueue? = nil, responseSerializer: T, completionHandler: @escaping (PXKit.PXNetworking.DownloadResponse<T.PXNetworkingSerializedObject>) -> Swift.Void) -> Self where T : PXKit.PXNetworkingDownloadResponseSerializerProtocol
-  #endif
+  public func response<T>(queue: Dispatch::DispatchQueue? = nil, responseSerializer: T, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DownloadResponse<T.PXNetworkingSerializedObject>) -> Swift::Void) -> Self where T : PXKit::PXNetworkingDownloadResponseSerializerProtocol
 }
-extension PXKit.PXNetworking.Request {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func serializeResponseData(response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: (any Swift.Error)?) -> PXKit.PXNetworking.Result<Foundation.Data>
-  #endif
+extension PXKit::PXNetworking.PXKit::Request {
+  public static func serializeResponseData(response: Foundation::HTTPURLResponse?, data: Foundation::Data?, error: (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Foundation::Data>
 }
-extension PXKit.PXNetworking.DataRequest {
-  public static func dataResponseSerializer() -> PXKit.PXNetworking.DataResponseSerializer<Foundation.Data>
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DataRequest {
+  public static func dataResponseSerializer() -> PXKit::PXNetworking.PXKit::DataResponseSerializer<Foundation::Data>
   @discardableResult
-  public func responseData(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (PXKit.PXNetworking.DataResponse<Foundation.Data>) -> Swift.Void) -> Self
-  #endif
+  public func responseData(queue: Dispatch::DispatchQueue? = nil, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DataResponse<Foundation::Data>) -> Swift::Void) -> Self
 }
-extension PXKit.PXNetworking.DownloadRequest {
-  public static func dataResponseSerializer() -> PXKit.PXNetworking.DownloadResponseSerializer<Foundation.Data>
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DownloadRequest {
+  public static func dataResponseSerializer() -> PXKit::PXNetworking.PXKit::DownloadResponseSerializer<Foundation::Data>
   @discardableResult
-  public func responseData(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (PXKit.PXNetworking.DownloadResponse<Foundation.Data>) -> Swift.Void) -> Self
-  #endif
+  public func responseData(queue: Dispatch::DispatchQueue? = nil, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DownloadResponse<Foundation::Data>) -> Swift::Void) -> Self
 }
-extension PXKit.PXNetworking.Request {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func serializeResponseString(encoding: Swift.String.Encoding?, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: (any Swift.Error)?) -> PXKit.PXNetworking.Result<Swift.String>
-  #endif
+extension PXKit::PXNetworking.PXKit::Request {
+  public static func serializeResponseString(encoding: Swift::String.Foundation::Encoding?, response: Foundation::HTTPURLResponse?, data: Foundation::Data?, error: (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Swift::String>
 }
-extension PXKit.PXNetworking.DataRequest {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func stringResponseSerializer(encoding: Swift.String.Encoding? = nil) -> PXKit.PXNetworking.DataResponseSerializer<Swift.String>
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DataRequest {
+  public static func stringResponseSerializer(encoding: Swift::String.Foundation::Encoding? = nil) -> PXKit::PXNetworking.PXKit::DataResponseSerializer<Swift::String>
   @discardableResult
-  public func responseString(queue: Dispatch.DispatchQueue? = nil, encoding: Swift.String.Encoding? = nil, completionHandler: @escaping (PXKit.PXNetworking.DataResponse<Swift.String>) -> Swift.Void) -> Self
-  #endif
+  public func responseString(queue: Dispatch::DispatchQueue? = nil, encoding: Swift::String.Foundation::Encoding? = nil, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DataResponse<Swift::String>) -> Swift::Void) -> Self
 }
-extension PXKit.PXNetworking.DownloadRequest {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func stringResponseSerializer(encoding: Swift.String.Encoding? = nil) -> PXKit.PXNetworking.DownloadResponseSerializer<Swift.String>
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DownloadRequest {
+  public static func stringResponseSerializer(encoding: Swift::String.Foundation::Encoding? = nil) -> PXKit::PXNetworking.PXKit::DownloadResponseSerializer<Swift::String>
   @discardableResult
-  public func responseString(queue: Dispatch.DispatchQueue? = nil, encoding: Swift.String.Encoding? = nil, completionHandler: @escaping (PXKit.PXNetworking.DownloadResponse<Swift.String>) -> Swift.Void) -> Self
-  #endif
+  public func responseString(queue: Dispatch::DispatchQueue? = nil, encoding: Swift::String.Foundation::Encoding? = nil, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DownloadResponse<Swift::String>) -> Swift::Void) -> Self
 }
-extension PXKit.PXNetworking.Request {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func serializeResponseJSON(options: Foundation.JSONSerialization.ReadingOptions, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: (any Swift.Error)?) -> PXKit.PXNetworking.Result<Any>
-  #endif
+extension PXKit::PXNetworking.PXKit::Request {
+  public static func serializeResponseJSON(options: Foundation::JSONSerialization.Foundation::ReadingOptions, response: Foundation::HTTPURLResponse?, data: Foundation::Data?, error: (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Any>
 }
-extension PXKit.PXNetworking.DataRequest {
-  public static func jsonResponseSerializer(options: Foundation.JSONSerialization.ReadingOptions = .allowFragments) -> PXKit.PXNetworking.DataResponseSerializer<Any>
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DataRequest {
+  public static func jsonResponseSerializer(options: Foundation::JSONSerialization.Foundation::ReadingOptions = .allowFragments) -> PXKit::PXNetworking.PXKit::DataResponseSerializer<Any>
   @discardableResult
-  public func responseJSON(queue: Dispatch.DispatchQueue? = nil, options: Foundation.JSONSerialization.ReadingOptions = .allowFragments, completionHandler: @escaping (PXKit.PXNetworking.DataResponse<Any>) -> Swift.Void) -> Self
-  #endif
+  public func responseJSON(queue: Dispatch::DispatchQueue? = nil, options: Foundation::JSONSerialization.Foundation::ReadingOptions = .allowFragments, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DataResponse<Any>) -> Swift::Void) -> Self
 }
-extension PXKit.PXNetworking.DownloadRequest {
-  public static func jsonResponseSerializer(options: Foundation.JSONSerialization.ReadingOptions = .allowFragments) -> PXKit.PXNetworking.DownloadResponseSerializer<Any>
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DownloadRequest {
+  public static func jsonResponseSerializer(options: Foundation::JSONSerialization.Foundation::ReadingOptions = .allowFragments) -> PXKit::PXNetworking.PXKit::DownloadResponseSerializer<Any>
   @discardableResult
-  public func responseJSON(queue: Dispatch.DispatchQueue? = nil, options: Foundation.JSONSerialization.ReadingOptions = .allowFragments, completionHandler: @escaping (PXKit.PXNetworking.DownloadResponse<Any>) -> Swift.Void) -> Self
-  #endif
+  public func responseJSON(queue: Dispatch::DispatchQueue? = nil, options: Foundation::JSONSerialization.Foundation::ReadingOptions = .allowFragments, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DownloadResponse<Any>) -> Swift::Void) -> Self
 }
-extension PXKit.PXNetworking.Request {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func serializeResponsePropertyList(options: Foundation.PropertyListSerialization.ReadOptions, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: (any Swift.Error)?) -> PXKit.PXNetworking.Result<Any>
-  #endif
+extension PXKit::PXNetworking.PXKit::Request {
+  public static func serializeResponsePropertyList(options: Foundation::PropertyListSerialization.Foundation::ReadOptions, response: Foundation::HTTPURLResponse?, data: Foundation::Data?, error: (any Swift::Error)?) -> PXKit::PXNetworking.PXKit::Result<Any>
 }
-extension PXKit.PXNetworking.DataRequest {
-  public static func propertyListResponseSerializer(options: Foundation.PropertyListSerialization.ReadOptions = []) -> PXKit.PXNetworking.DataResponseSerializer<Any>
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DataRequest {
+  public static func propertyListResponseSerializer(options: Foundation::PropertyListSerialization.Foundation::ReadOptions = []) -> PXKit::PXNetworking.PXKit::DataResponseSerializer<Any>
   @discardableResult
-  public func responsePropertyList(queue: Dispatch.DispatchQueue? = nil, options: Foundation.PropertyListSerialization.ReadOptions = [], completionHandler: @escaping (PXKit.PXNetworking.DataResponse<Any>) -> Swift.Void) -> Self
-  #endif
+  public func responsePropertyList(queue: Dispatch::DispatchQueue? = nil, options: Foundation::PropertyListSerialization.Foundation::ReadOptions = [], completionHandler: @escaping (PXKit::PXNetworking.PXKit::DataResponse<Any>) -> Swift::Void) -> Self
 }
-extension PXKit.PXNetworking.DownloadRequest {
-  public static func propertyListResponseSerializer(options: Foundation.PropertyListSerialization.ReadOptions = []) -> PXKit.PXNetworking.DownloadResponseSerializer<Any>
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DownloadRequest {
+  public static func propertyListResponseSerializer(options: Foundation::PropertyListSerialization.Foundation::ReadOptions = []) -> PXKit::PXNetworking.PXKit::DownloadResponseSerializer<Any>
   @discardableResult
-  public func responsePropertyList(queue: Dispatch.DispatchQueue? = nil, options: Foundation.PropertyListSerialization.ReadOptions = [], completionHandler: @escaping (PXKit.PXNetworking.DownloadResponse<Any>) -> Swift.Void) -> Self
-  #endif
+  public func responsePropertyList(queue: Dispatch::DispatchQueue? = nil, options: Foundation::PropertyListSerialization.Foundation::ReadOptions = [], completionHandler: @escaping (PXKit::PXNetworking.PXKit::DownloadResponse<Any>) -> Swift::Void) -> Self
 }
-public enum ConnectionMode : Swift.Equatable {
+public enum ConnectionMode : Swift::Equatable {
   case us
   case eu
   case us2
-  case custom(host: Swift.String)
-  public static func == (a: PXKit.ConnectionMode, b: PXKit.ConnectionMode) -> Swift.Bool
+  case custom(host: Swift::String)
+  public static func == (a: PXKit::ConnectionMode, b: PXKit::ConnectionMode) -> Swift::Bool
 }
-@objc(PXGlobalContext) public class GlobalContext : ObjectiveC.NSObject {
-  @objc public func setString(key: Swift.String, value: Swift.String) -> PXKit.GlobalContext
-  @objc public func setDouble(key: Swift.String, value: Swift.Double) -> PXKit.GlobalContext
-  @objc public func setBoolean(key: Swift.String, value: Swift.Bool) -> PXKit.GlobalContext
-  @objc public func setDate(key: Swift.String, value: Foundation.Date) -> PXKit.GlobalContext
-  @objc public func setDate(key: Swift.String, iso: Swift.String) -> PXKit.GlobalContext
-  @objc public func hasKey(key: Swift.String) -> Swift.Bool
-  @objc public func removeKeys(keys: [Swift.String])
+@objc(PXGlobalContext) public class GlobalContext : ObjectiveC::NSObject {
+  @objc public func setString(key: Swift::String, value: Swift::String) -> PXKit::GlobalContext
+  @objc public func setDouble(key: Swift::String, value: Swift::Double) -> PXKit::GlobalContext
+  @objc public func setBoolean(key: Swift::String, value: Swift::Bool) -> PXKit::GlobalContext
+  @objc public func setDate(key: Swift::String, value: Foundation::Date) -> PXKit::GlobalContext
+  @objc public func setDate(key: Swift::String, iso: Swift::String) -> PXKit::GlobalContext
+  @objc public func hasKey(key: Swift::String) -> Swift::Bool
+  @objc public func removeKeys(keys: [Swift::String])
   @objc override dynamic public init()
   @objc deinit
 }
-public typealias PXNetworkingImage = UIKit.UIImage
-public protocol PXNetworkingURLConvertible : Swift.Sendable {
-  func px_asURL() throws -> Foundation.URL
+public typealias PXNetworkingImage = UIKit::UIImage
+public protocol PXNetworkingURLConvertible : Swift::Sendable {
+  func px_asURL() throws -> Foundation::URL
 }
-extension Swift.String : PXKit.PXNetworkingURLConvertible {
-  public func px_asURL() throws -> Foundation.URL
+extension Swift::String : PXKit::PXNetworkingURLConvertible {
+  public func px_asURL() throws -> Foundation::URL
 }
-extension Foundation.URL : PXKit.PXNetworkingURLConvertible {
-  public func px_asURL() throws -> Foundation.URL
+extension Foundation::URL : PXKit::PXNetworkingURLConvertible {
+  public func px_asURL() throws -> Foundation::URL
 }
-extension Foundation.URLComponents : PXKit.PXNetworkingURLConvertible {
-  public func px_asURL() throws -> Foundation.URL
+extension Foundation::URLComponents : PXKit::PXNetworkingURLConvertible {
+  public func px_asURL() throws -> Foundation::URL
 }
 public protocol PXNetworkingURLRequestConvertible {
-  func px_asURLRequest() throws -> Foundation.URLRequest
+  func px_asURLRequest() throws -> Foundation::URLRequest
 }
-extension PXKit.PXNetworkingURLRequestConvertible {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var px_urlRequest: Foundation.URLRequest? {
+extension PXKit::PXNetworkingURLRequestConvertible {
+  public var px_urlRequest: Foundation::URLRequest? {
     get
   }
-  #endif
 }
-extension Foundation.URLRequest : PXKit.PXNetworkingURLRequestConvertible {
-  public func px_asURLRequest() throws -> Foundation.URLRequest
+extension Foundation::URLRequest : PXKit::PXNetworkingURLRequestConvertible {
+  public func px_asURLRequest() throws -> Foundation::URLRequest
 }
-extension Foundation.URLRequest {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public init(url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod, headers: PXKit.PXNetworkingHTTPHeaders? = nil) throws
-  #endif
+extension Foundation::URLRequest {
+  public init(url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod, headers: PXKit::PXNetworkingHTTPHeaders? = nil) throws
 }
-#if compiler(>=5.3) && $NonescapableTypes
 @discardableResult
-public func px_request(_ url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .get, parameters: PXKit.PXNetworkingParameters? = nil, encoding: any PXKit.PXNetworkingParameterEncoding = PXNetworking.URLEncoding.default, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.DataRequest
-#endif
+public func px_request(_ url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .get, parameters: PXKit::PXNetworkingParameters? = nil, encoding: any PXKit::PXNetworkingParameterEncoding = PXNetworking.URLEncoding.default, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::DataRequest
 @discardableResult
-public func px_request(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.DataRequest
-#if compiler(>=5.3) && $NonescapableTypes
+public func px_request(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::DataRequest
 @discardableResult
-public func px_download(_ url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .get, parameters: PXKit.PXNetworkingParameters? = nil, encoding: any PXKit.PXNetworkingParameterEncoding = PXNetworking.URLEncoding.default, headers: PXKit.PXNetworkingHTTPHeaders? = nil, to destination: PXKit.PXNetworking.DownloadRequest.DownloadFileDestination? = nil) -> PXKit.PXNetworking.DownloadRequest
-#endif
-#if compiler(>=5.3) && $NonescapableTypes
+public func px_download(_ url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .get, parameters: PXKit::PXNetworkingParameters? = nil, encoding: any PXKit::PXNetworkingParameterEncoding = PXNetworking.URLEncoding.default, headers: PXKit::PXNetworkingHTTPHeaders? = nil, to destination: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadFileDestination? = nil) -> PXKit::PXNetworking.PXKit::DownloadRequest
 @discardableResult
-public func px_download(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, to destination: PXKit.PXNetworking.DownloadRequest.DownloadFileDestination? = nil) -> PXKit.PXNetworking.DownloadRequest
-#endif
-#if compiler(>=5.3) && $NonescapableTypes
+public func px_download(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, to destination: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadFileDestination? = nil) -> PXKit::PXNetworking.PXKit::DownloadRequest
 @discardableResult
-public func px_download(resumingWith resumeData: Foundation.Data, to destination: PXKit.PXNetworking.DownloadRequest.DownloadFileDestination? = nil) -> PXKit.PXNetworking.DownloadRequest
-#endif
-#if compiler(>=5.3) && $NonescapableTypes
+public func px_download(resumingWith resumeData: Foundation::Data, to destination: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadFileDestination? = nil) -> PXKit::PXNetworking.PXKit::DownloadRequest
 @discardableResult
-public func px_upload(_ fileURL: Foundation.URL, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.UploadRequest
-#endif
+public func px_upload(_ fileURL: Foundation::URL, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::UploadRequest
 @discardableResult
-public func px_upload(_ fileURL: Foundation.URL, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.UploadRequest
-#if compiler(>=5.3) && $NonescapableTypes
+public func px_upload(_ fileURL: Foundation::URL, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::UploadRequest
 @discardableResult
-public func px_upload(_ data: Foundation.Data, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.UploadRequest
-#endif
+public func px_upload(_ data: Foundation::Data, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::UploadRequest
 @discardableResult
-public func px_upload(_ data: Foundation.Data, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.UploadRequest
-#if compiler(>=5.3) && $NonescapableTypes
+public func px_upload(_ data: Foundation::Data, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::UploadRequest
 @discardableResult
-public func px_upload(_ stream: Foundation.InputStream, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.UploadRequest
-#endif
+public func px_upload(_ stream: Foundation::InputStream, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::UploadRequest
 @discardableResult
-public func px_upload(_ stream: Foundation.InputStream, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.UploadRequest
-#if compiler(>=5.3) && $NonescapableTypes
-public func px_upload(multipartFormData: @escaping (PXKit.PXNetworking.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = PXNetworking.SessionManager.multipartFormDataEncodingMemoryThreshold, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil, encodingCompletion: ((PXKit.PXNetworking.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
-#endif
-#if compiler(>=5.3) && $NonescapableTypes
-public func px_upload(multipartFormData: @escaping (PXKit.PXNetworking.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = PXNetworking.SessionManager.multipartFormDataEncodingMemoryThreshold, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible, encodingCompletion: ((PXKit.PXNetworking.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
-#endif
+public func px_upload(_ stream: Foundation::InputStream, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::UploadRequest
+public func px_upload(multipartFormData: @escaping (PXKit::PXNetworking.PXKit::MultipartFormData) -> Swift::Void, usingThreshold encodingMemoryThreshold: Swift::UInt64 = PXNetworking.SessionManager.multipartFormDataEncodingMemoryThreshold, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil, encodingCompletion: ((PXKit::PXNetworking.PXKit::SessionManager.PXKit::MultipartFormDataEncodingResult) -> Swift::Void)?)
+public func px_upload(multipartFormData: @escaping (PXKit::PXNetworking.PXKit::MultipartFormData) -> Swift::Void, usingThreshold encodingMemoryThreshold: Swift::UInt64 = PXNetworking.SessionManager.multipartFormDataEncodingMemoryThreshold, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible, encodingCompletion: ((PXKit::PXNetworking.PXKit::SessionManager.PXKit::MultipartFormDataEncodingResult) -> Swift::Void)?)
 @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
 @discardableResult
-public func px_stream(withHostName hostName: Swift.String, port: Swift.Int) -> PXKit.PXNetworking.StreamRequest
+public func px_stream(withHostName hostName: Swift::String, port: Swift::Int) -> PXKit::PXNetworking.PXKit::StreamRequest
 @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
 @discardableResult
-public func px_stream(with netService: Foundation.NetService) -> PXKit.PXNetworking.StreamRequest
-extension PXKit.User {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var signUpDate: Foundation.Date? {
+public func px_stream(with netService: Foundation::NetService) -> PXKit::PXNetworking.PXKit::StreamRequest
+extension PXKit::User {
+  public var signUpDate: Foundation::Date? {
     get
     set
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var signUpDateString: Swift.String? {
+  public var signUpDateString: Swift::String? {
     get
     set
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var signUpDateEpoch: Swift.Int? {
+  public var signUpDateEpoch: Swift::Int? {
     get
     set
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var firstVisitDate: Foundation.Date? {
+  public var firstVisitDate: Foundation::Date? {
     get
     set
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var firstVisitDateString: Swift.String? {
+  public var firstVisitDateString: Swift::String? {
     get
     set
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var firstVisitDateEpoch: Swift.Int? {
+  public var firstVisitDateEpoch: Swift::Int? {
     get
     set
   }
-  #endif
 }
 public protocol PXNetworkingImageFilter {
-  var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage { get }
-  var px_identifier: Swift.String { get }
+  var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage { get }
+  var px_identifier: Swift::String { get }
 }
-extension PXKit.PXNetworkingImageFilter {
-  public var px_identifier: Swift.String {
+extension PXKit::PXNetworkingImageFilter {
+  public var px_identifier: Swift::String {
     get
   }
 }
 public protocol PXNetworkingSizable {
-  var px_size: CoreFoundation.CGSize { get }
+  var px_size: CoreFoundation::CGSize { get }
 }
-extension PXKit.PXNetworkingImageFilter where Self : PXKit.PXNetworkingSizable {
-  public var px_identifier: Swift.String {
+extension PXKit::PXNetworkingImageFilter where Self : PXKit::PXNetworkingSizable {
+  public var px_identifier: Swift::String {
     get
   }
 }
 public protocol PXNetworkingRoundable {
-  var px_radius: CoreFoundation.CGFloat { get }
+  var px_radius: CoreFoundation::CGFloat { get }
 }
-extension PXKit.PXNetworkingImageFilter where Self : PXKit.PXNetworkingRoundable {
-  public var px_identifier: Swift.String {
+extension PXKit::PXNetworkingImageFilter where Self : PXKit::PXNetworkingRoundable {
+  public var px_identifier: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking {
-  public struct DynamicImageFilter : PXKit.PXNetworkingImageFilter {
-    public let px_identifier: Swift.String
-    public let px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage
-    public init(_ identifier: Swift.String, filter: @escaping (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage)
+extension PXKit::PXNetworking {
+  public struct DynamicImageFilter : PXKit::PXNetworkingImageFilter {
+    public let px_identifier: Swift::String
+    public let px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage
+    public init(_ identifier: Swift::String, filter: @escaping (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage)
   }
 }
-public protocol PXNetworkingCompositeImageFilter : PXKit.PXNetworkingImageFilter {
-  var px_filters: [any PXKit.PXNetworkingImageFilter] { get }
+public protocol PXNetworkingCompositeImageFilter : PXKit::PXNetworkingImageFilter {
+  var px_filters: [any PXKit::PXNetworkingImageFilter] { get }
 }
-extension PXKit.PXNetworkingCompositeImageFilter {
-  public var px_identifier: Swift.String {
+extension PXKit::PXNetworkingCompositeImageFilter {
+  public var px_identifier: Swift::String {
     get
   }
-  public var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage {
+  public var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage {
     get
   }
 }
-extension PXKit.PXNetworking {
-  public struct DynamicCompositeImageFilter : PXKit.PXNetworkingCompositeImageFilter {
-    public let px_filters: [any PXKit.PXNetworkingImageFilter]
-    public init(_ filters: [any PXKit.PXNetworkingImageFilter])
-    public init(_ filters: any PXKit.PXNetworkingImageFilter...)
+extension PXKit::PXNetworking {
+  public struct DynamicCompositeImageFilter : PXKit::PXNetworkingCompositeImageFilter {
+    public let px_filters: [any PXKit::PXNetworkingImageFilter]
+    public init(_ filters: [any PXKit::PXNetworkingImageFilter])
+    public init(_ filters: any PXKit::PXNetworkingImageFilter...)
   }
 }
-extension PXKit.PXNetworking {
-  public struct ScaledToSizeFilter : PXKit.PXNetworkingImageFilter, PXKit.PXNetworkingSizable {
-    public let px_size: CoreFoundation.CGSize
-    public init(size: CoreFoundation.CGSize)
-    public var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage {
+extension PXKit::PXNetworking {
+  public struct ScaledToSizeFilter : PXKit::PXNetworkingImageFilter, PXKit::PXNetworkingSizable {
+    public let px_size: CoreFoundation::CGSize
+    public init(size: CoreFoundation::CGSize)
+    public var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage {
       get
     }
   }
-  public struct AspectScaledToFitSizeFilter : PXKit.PXNetworkingImageFilter, PXKit.PXNetworkingSizable {
-    public let px_size: CoreFoundation.CGSize
-    public init(size: CoreFoundation.CGSize)
-    public var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage {
+  public struct AspectScaledToFitSizeFilter : PXKit::PXNetworkingImageFilter, PXKit::PXNetworkingSizable {
+    public let px_size: CoreFoundation::CGSize
+    public init(size: CoreFoundation::CGSize)
+    public var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage {
       get
     }
   }
-  public struct AspectScaledToFillSizeFilter : PXKit.PXNetworkingImageFilter, PXKit.PXNetworkingSizable {
-    public let px_size: CoreFoundation.CGSize
-    public init(size: CoreFoundation.CGSize)
-    public var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage {
+  public struct AspectScaledToFillSizeFilter : PXKit::PXNetworkingImageFilter, PXKit::PXNetworkingSizable {
+    public let px_size: CoreFoundation::CGSize
+    public init(size: CoreFoundation::CGSize)
+    public var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage {
       get
     }
   }
-  public struct RoundedCornersFilter : PXKit.PXNetworkingImageFilter, PXKit.PXNetworkingRoundable {
-    public let px_radius: CoreFoundation.CGFloat
-    public let px_divideRadiusByImageScale: Swift.Bool
-    public init(radius: CoreFoundation.CGFloat, divideRadiusByImageScale: Swift.Bool = false)
-    public var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage {
+  public struct RoundedCornersFilter : PXKit::PXNetworkingImageFilter, PXKit::PXNetworkingRoundable {
+    public let px_radius: CoreFoundation::CGFloat
+    public let px_divideRadiusByImageScale: Swift::Bool
+    public init(radius: CoreFoundation::CGFloat, divideRadiusByImageScale: Swift::Bool = false)
+    public var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage {
       get
     }
-    public var px_identifier: Swift.String {
+    public var px_identifier: Swift::String {
       get
     }
   }
-  public struct CircleFilter : PXKit.PXNetworkingImageFilter {
+  public struct CircleFilter : PXKit::PXNetworkingImageFilter {
     public init()
-    public var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage {
+    public var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage {
       get
     }
   }
 }
 @available(iOS 9.0, *)
-public protocol PXNetworkingCoreImageFilter : PXKit.PXNetworkingImageFilter {
-  var px_filterName: Swift.String { get }
-  var px_parameters: [Swift.String : Any] { get }
+public protocol PXNetworkingCoreImageFilter : PXKit::PXNetworkingImageFilter {
+  var px_filterName: Swift::String { get }
+  var px_parameters: [Swift::String : Any] { get }
 }
 @available(iOS 9.0, *)
-extension PXKit.PXNetworkingImageFilter where Self : PXKit.PXNetworkingCoreImageFilter {
-  public var px_filter: (PXKit.PXNetworkingImage) -> PXKit.PXNetworkingImage {
+extension PXKit::PXNetworkingImageFilter where Self : PXKit::PXNetworkingCoreImageFilter {
+  public var px_filter: (PXKit::PXNetworkingImage) -> PXKit::PXNetworkingImage {
     get
   }
-  public var px_identifier: Swift.String {
+  public var px_identifier: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   @available(iOS 9.0, *)
-  public struct BlurFilter : PXKit.PXNetworkingImageFilter, PXKit.PXNetworkingCoreImageFilter {
-    public let px_filterName: Swift.String
-    public let px_parameters: [Swift.String : Any]
-    public init(blurRadius: Swift.UInt = 10)
+  public struct BlurFilter : PXKit::PXNetworkingImageFilter, PXKit::PXNetworkingCoreImageFilter {
+    public let px_filterName: Swift::String
+    public let px_parameters: [Swift::String : Any]
+    public init(blurRadius: Swift::UInt = 10)
   }
 }
-extension PXKit.PXNetworking {
-  public struct ScaledToSizeWithRoundedCornersFilter : PXKit.PXNetworkingCompositeImageFilter {
-    public init(size: CoreFoundation.CGSize, radius: CoreFoundation.CGFloat, divideRadiusByImageScale: Swift.Bool = false)
-    public let px_filters: [any PXKit.PXNetworkingImageFilter]
+extension PXKit::PXNetworking {
+  public struct ScaledToSizeWithRoundedCornersFilter : PXKit::PXNetworkingCompositeImageFilter {
+    public init(size: CoreFoundation::CGSize, radius: CoreFoundation::CGFloat, divideRadiusByImageScale: Swift::Bool = false)
+    public let px_filters: [any PXKit::PXNetworkingImageFilter]
   }
-  public struct AspectScaledToFillSizeWithRoundedCornersFilter : PXKit.PXNetworkingCompositeImageFilter {
-    public init(size: CoreFoundation.CGSize, radius: CoreFoundation.CGFloat, divideRadiusByImageScale: Swift.Bool = false)
-    public let px_filters: [any PXKit.PXNetworkingImageFilter]
+  public struct AspectScaledToFillSizeWithRoundedCornersFilter : PXKit::PXNetworkingCompositeImageFilter {
+    public init(size: CoreFoundation::CGSize, radius: CoreFoundation::CGFloat, divideRadiusByImageScale: Swift::Bool = false)
+    public let px_filters: [any PXKit::PXNetworkingImageFilter]
   }
-  public struct ScaledToSizeCircleFilter : PXKit.PXNetworkingCompositeImageFilter {
-    public init(size: CoreFoundation.CGSize)
-    public let px_filters: [any PXKit.PXNetworkingImageFilter]
+  public struct ScaledToSizeCircleFilter : PXKit::PXNetworkingCompositeImageFilter {
+    public init(size: CoreFoundation::CGSize)
+    public let px_filters: [any PXKit::PXNetworkingImageFilter]
   }
-  public struct AspectScaledToFillSizeCircleFilter : PXKit.PXNetworkingCompositeImageFilter {
-    public init(size: CoreFoundation.CGSize)
-    public let px_filters: [any PXKit.PXNetworkingImageFilter]
+  public struct AspectScaledToFillSizeCircleFilter : PXKit::PXNetworkingCompositeImageFilter {
+    public init(size: CoreFoundation::CGSize)
+    public let px_filters: [any PXKit::PXNetworkingImageFilter]
   }
 }
-extension PXKit.PXNetworking {
-  @objc open class SessionDelegate : ObjectiveC.NSObject, @unchecked Swift.Sendable {
-    open var sessionDidBecomeInvalidWithError: ((Foundation.URLSession, (any Swift.Error)?) -> Swift.Void)?
-    open var sessionDidReceiveChallenge: ((Foundation.URLSession, Foundation.URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?))?
-    open var sessionDidReceiveChallengeWithCompletion: ((Foundation.URLSession, Foundation.URLAuthenticationChallenge, @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void) -> Swift.Void)?
-    open var sessionDidFinishEventsForBackgroundURLSession: ((Foundation.URLSession) -> Swift.Void)?
-    open var taskWillPerformHTTPRedirection: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.HTTPURLResponse, Foundation.URLRequest) -> Foundation.URLRequest?)?
-    open var taskWillPerformHTTPRedirectionWithCompletion: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.HTTPURLResponse, Foundation.URLRequest, @escaping (Foundation.URLRequest?) -> Swift.Void) -> Swift.Void)?
-    open var taskDidReceiveChallenge: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?))?
-    open var taskDidReceiveChallengeWithCompletion: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.URLAuthenticationChallenge, @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void) -> Swift.Void)?
-    open var taskNeedNewBodyStream: ((Foundation.URLSession, Foundation.URLSessionTask) -> Foundation.InputStream?)?
-    open var taskNeedNewBodyStreamWithCompletion: ((Foundation.URLSession, Foundation.URLSessionTask, @escaping (Foundation.InputStream?) -> Swift.Void) -> Swift.Void)?
-    open var taskDidSendBodyData: ((Foundation.URLSession, Foundation.URLSessionTask, Swift.Int64, Swift.Int64, Swift.Int64) -> Swift.Void)?
-    open var taskDidComplete: ((Foundation.URLSession, Foundation.URLSessionTask, (any Swift.Error)?) -> Swift.Void)?
-    open var dataTaskDidReceiveResponse: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.URLResponse) -> Foundation.URLSession.ResponseDisposition)?
-    open var dataTaskDidReceiveResponseWithCompletion: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.URLResponse, @escaping (Foundation.URLSession.ResponseDisposition) -> Swift.Void) -> Swift.Void)?
-    open var dataTaskDidBecomeDownloadTask: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.URLSessionDownloadTask) -> Swift.Void)?
-    open var dataTaskDidReceiveData: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.Data) -> Swift.Void)?
-    open var dataTaskWillCacheResponse: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.CachedURLResponse) -> Foundation.CachedURLResponse?)?
-    open var dataTaskWillCacheResponseWithCompletion: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.CachedURLResponse, @escaping (Foundation.CachedURLResponse?) -> Swift.Void) -> Swift.Void)?
-    open var downloadTaskDidFinishDownloadingToURL: ((Foundation.URLSession, Foundation.URLSessionDownloadTask, Foundation.URL) -> Swift.Void)?
-    open var downloadTaskDidWriteData: ((Foundation.URLSession, Foundation.URLSessionDownloadTask, Swift.Int64, Swift.Int64, Swift.Int64) -> Swift.Void)?
-    open var downloadTaskDidResumeAtOffset: ((Foundation.URLSession, Foundation.URLSessionDownloadTask, Swift.Int64, Swift.Int64) -> Swift.Void)?
-    #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking {
+  @objc open class SessionDelegate : ObjectiveC::NSObject, @unchecked Swift::Sendable {
+    open var sessionDidBecomeInvalidWithError: ((Foundation::URLSession, (any Swift::Error)?) -> Swift::Void)?
+    open var sessionDidReceiveChallenge: ((Foundation::URLSession, Foundation::URLAuthenticationChallenge) -> (Foundation::URLSession.Foundation::AuthChallengeDisposition, Foundation::URLCredential?))?
+    open var sessionDidReceiveChallengeWithCompletion: ((Foundation::URLSession, Foundation::URLAuthenticationChallenge, @escaping (Foundation::URLSession.Foundation::AuthChallengeDisposition, Foundation::URLCredential?) -> Swift::Void) -> Swift::Void)?
+    open var sessionDidFinishEventsForBackgroundURLSession: ((Foundation::URLSession) -> Swift::Void)?
+    open var taskWillPerformHTTPRedirection: ((Foundation::URLSession, Foundation::URLSessionTask, Foundation::HTTPURLResponse, Foundation::URLRequest) -> Foundation::URLRequest?)?
+    open var taskWillPerformHTTPRedirectionWithCompletion: ((Foundation::URLSession, Foundation::URLSessionTask, Foundation::HTTPURLResponse, Foundation::URLRequest, @escaping (Foundation::URLRequest?) -> Swift::Void) -> Swift::Void)?
+    open var taskDidReceiveChallenge: ((Foundation::URLSession, Foundation::URLSessionTask, Foundation::URLAuthenticationChallenge) -> (Foundation::URLSession.Foundation::AuthChallengeDisposition, Foundation::URLCredential?))?
+    open var taskDidReceiveChallengeWithCompletion: ((Foundation::URLSession, Foundation::URLSessionTask, Foundation::URLAuthenticationChallenge, @escaping (Foundation::URLSession.Foundation::AuthChallengeDisposition, Foundation::URLCredential?) -> Swift::Void) -> Swift::Void)?
+    open var taskNeedNewBodyStream: ((Foundation::URLSession, Foundation::URLSessionTask) -> Foundation::InputStream?)?
+    open var taskNeedNewBodyStreamWithCompletion: ((Foundation::URLSession, Foundation::URLSessionTask, @escaping (Foundation::InputStream?) -> Swift::Void) -> Swift::Void)?
+    open var taskDidSendBodyData: ((Foundation::URLSession, Foundation::URLSessionTask, Swift::Int64, Swift::Int64, Swift::Int64) -> Swift::Void)?
+    open var taskDidComplete: ((Foundation::URLSession, Foundation::URLSessionTask, (any Swift::Error)?) -> Swift::Void)?
+    open var dataTaskDidReceiveResponse: ((Foundation::URLSession, Foundation::URLSessionDataTask, Foundation::URLResponse) -> Foundation::URLSession.Foundation::ResponseDisposition)?
+    open var dataTaskDidReceiveResponseWithCompletion: ((Foundation::URLSession, Foundation::URLSessionDataTask, Foundation::URLResponse, @escaping (Foundation::URLSession.Foundation::ResponseDisposition) -> Swift::Void) -> Swift::Void)?
+    open var dataTaskDidBecomeDownloadTask: ((Foundation::URLSession, Foundation::URLSessionDataTask, Foundation::URLSessionDownloadTask) -> Swift::Void)?
+    open var dataTaskDidReceiveData: ((Foundation::URLSession, Foundation::URLSessionDataTask, Foundation::Data) -> Swift::Void)?
+    open var dataTaskWillCacheResponse: ((Foundation::URLSession, Foundation::URLSessionDataTask, Foundation::CachedURLResponse) -> Foundation::CachedURLResponse?)?
+    open var dataTaskWillCacheResponseWithCompletion: ((Foundation::URLSession, Foundation::URLSessionDataTask, Foundation::CachedURLResponse, @escaping (Foundation::CachedURLResponse?) -> Swift::Void) -> Swift::Void)?
+    open var downloadTaskDidFinishDownloadingToURL: ((Foundation::URLSession, Foundation::URLSessionDownloadTask, Foundation::URL) -> Swift::Void)?
+    open var downloadTaskDidWriteData: ((Foundation::URLSession, Foundation::URLSessionDownloadTask, Swift::Int64, Swift::Int64, Swift::Int64) -> Swift::Void)?
+    open var downloadTaskDidResumeAtOffset: ((Foundation::URLSession, Foundation::URLSessionDownloadTask, Swift::Int64, Swift::Int64) -> Swift::Void)?
     @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
-    open var streamTaskReadClosed: ((Foundation.URLSession, Foundation.URLSessionStreamTask) -> Swift.Void)? {
+    open var streamTaskReadClosed: ((Foundation::URLSession, Foundation::URLSessionStreamTask) -> Swift::Void)? {
       get
       set
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
     @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
-    open var streamTaskWriteClosed: ((Foundation.URLSession, Foundation.URLSessionStreamTask) -> Swift.Void)? {
+    open var streamTaskWriteClosed: ((Foundation::URLSession, Foundation::URLSessionStreamTask) -> Swift::Void)? {
       get
       set
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
     @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
-    open var streamTaskBetterRouteDiscovered: ((Foundation.URLSession, Foundation.URLSessionStreamTask) -> Swift.Void)? {
+    open var streamTaskBetterRouteDiscovered: ((Foundation::URLSession, Foundation::URLSessionStreamTask) -> Swift::Void)? {
       get
       set
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
     @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
-    open var streamTaskDidBecomeInputAndOutputStreams: ((Foundation.URLSession, Foundation.URLSessionStreamTask, Foundation.InputStream, Foundation.OutputStream) -> Swift.Void)? {
+    open var streamTaskDidBecomeInputAndOutputStreams: ((Foundation::URLSession, Foundation::URLSessionStreamTask, Foundation::InputStream, Foundation::OutputStream) -> Swift::Void)? {
       get
       set
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    open subscript(task: Foundation.URLSessionTask) -> PXKit.PXNetworking.Request? {
+    open subscript(task: Foundation::URLSessionTask) -> PXKit::PXNetworking.PXKit::Request? {
       get
       set
     }
-    #endif
     @objc override dynamic public init()
-    @objc override dynamic open func responds(to selector: ObjectiveC.Selector) -> Swift.Bool
+    @objc override dynamic open func responds(to selector: ObjectiveC::Selector) -> Swift::Bool
     @objc deinit
   }
 }
-extension PXKit.PXNetworking.SessionDelegate : Foundation.URLSessionDelegate {
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, didBecomeInvalidWithError error: (any Swift.Error)?)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public func urlSession(_ session: Foundation.URLSession, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void)
-  #endif
-  @objc dynamic open func urlSessionDidFinishEvents(forBackgroundURLSession session: Foundation.URLSession)
+extension PXKit::PXNetworking.PXKit::SessionDelegate : Foundation::URLSessionDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, didBecomeInvalidWithError error: (any Swift::Error)?)
+  @objc dynamic public func urlSession(_ session: Foundation::URLSession, didReceive challenge: Foundation::URLAuthenticationChallenge, completionHandler: @escaping (Foundation::URLSession.Foundation::AuthChallengeDisposition, Foundation::URLCredential?) -> Swift::Void)
+  @objc dynamic open func urlSessionDidFinishEvents(forBackgroundURLSession session: Foundation::URLSession)
 }
-extension PXKit.PXNetworking.SessionDelegate : Foundation.URLSessionTaskDelegate {
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (Foundation.URLRequest?) -> Swift.Void)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, needNewBodyStream completionHandler: @escaping (Foundation.InputStream?) -> Swift.Void)
-  #endif
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didSendBodyData bytesSent: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64)
+extension PXKit::PXNetworking.PXKit::SessionDelegate : Foundation::URLSessionTaskDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, task: Foundation::URLSessionTask, willPerformHTTPRedirection response: Foundation::HTTPURLResponse, newRequest request: Foundation::URLRequest, completionHandler: @escaping (Foundation::URLRequest?) -> Swift::Void)
+  @objc dynamic public func urlSession(_ session: Foundation::URLSession, task: Foundation::URLSessionTask, didReceive challenge: Foundation::URLAuthenticationChallenge, completionHandler: @escaping (Foundation::URLSession.Foundation::AuthChallengeDisposition, Foundation::URLCredential?) -> Swift::Void)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, task: Foundation::URLSessionTask, needNewBodyStream completionHandler: @escaping (Foundation::InputStream?) -> Swift::Void)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, task: Foundation::URLSessionTask, didSendBodyData bytesSent: Swift::Int64, totalBytesSent: Swift::Int64, totalBytesExpectedToSend: Swift::Int64)
   @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
-  @objc(URLSession:task:didFinishCollectingMetrics:) dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics)
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: (any Swift.Error)?)
-  #endif
+  @objc(URLSession:task:didFinishCollectingMetrics:) dynamic open func urlSession(_ session: Foundation::URLSession, task: Foundation::URLSessionTask, didFinishCollecting metrics: Foundation::URLSessionTaskMetrics)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, task: Foundation::URLSessionTask, didCompleteWithError error: (any Swift::Error)?)
 }
-extension PXKit.PXNetworking.SessionDelegate : Foundation.URLSessionDataDelegate {
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (Foundation.URLSession.ResponseDisposition) -> Swift.Void)
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, didBecome downloadTask: Foundation.URLSessionDownloadTask)
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, didReceive data: Foundation.Data)
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, willCacheResponse proposedResponse: Foundation.CachedURLResponse, completionHandler: @escaping (Foundation.CachedURLResponse?) -> Swift.Void)
-  #endif
+extension PXKit::PXNetworking.PXKit::SessionDelegate : Foundation::URLSessionDataDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, dataTask: Foundation::URLSessionDataTask, didReceive response: Foundation::URLResponse, completionHandler: @escaping (Foundation::URLSession.Foundation::ResponseDisposition) -> Swift::Void)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, dataTask: Foundation::URLSessionDataTask, didBecome downloadTask: Foundation::URLSessionDownloadTask)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, dataTask: Foundation::URLSessionDataTask, didReceive data: Foundation::Data)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, dataTask: Foundation::URLSessionDataTask, willCacheResponse proposedResponse: Foundation::CachedURLResponse, completionHandler: @escaping (Foundation::CachedURLResponse?) -> Swift::Void)
 }
-extension PXKit.PXNetworking.SessionDelegate : Foundation.URLSessionDownloadDelegate {
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didFinishDownloadingTo location: Foundation.URL)
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64)
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didResumeAtOffset fileOffset: Swift.Int64, expectedTotalBytes: Swift.Int64)
+extension PXKit::PXNetworking.PXKit::SessionDelegate : Foundation::URLSessionDownloadDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, downloadTask: Foundation::URLSessionDownloadTask, didFinishDownloadingTo location: Foundation::URL)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, downloadTask: Foundation::URLSessionDownloadTask, didWriteData bytesWritten: Swift::Int64, totalBytesWritten: Swift::Int64, totalBytesExpectedToWrite: Swift::Int64)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, downloadTask: Foundation::URLSessionDownloadTask, didResumeAtOffset fileOffset: Swift::Int64, expectedTotalBytes: Swift::Int64)
 }
 @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
-extension PXKit.PXNetworking.SessionDelegate : Foundation.URLSessionStreamDelegate {
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, readClosedFor streamTask: Foundation.URLSessionStreamTask)
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, writeClosedFor streamTask: Foundation.URLSessionStreamTask)
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, betterRouteDiscoveredFor streamTask: Foundation.URLSessionStreamTask)
-  @objc dynamic open func urlSession(_ session: Foundation.URLSession, streamTask: Foundation.URLSessionStreamTask, didBecome inputStream: Foundation.InputStream, outputStream: Foundation.OutputStream)
+extension PXKit::PXNetworking.PXKit::SessionDelegate : Foundation::URLSessionStreamDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, readClosedFor streamTask: Foundation::URLSessionStreamTask)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, writeClosedFor streamTask: Foundation::URLSessionStreamTask)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, betterRouteDiscoveredFor streamTask: Foundation::URLSessionStreamTask)
+  @objc dynamic open func urlSession(_ session: Foundation::URLSession, streamTask: Foundation::URLSessionStreamTask, didBecome inputStream: Foundation::InputStream, outputStream: Foundation::OutputStream)
 }
-extension PXKit.GainsightPX {
-  @objc dynamic public func trackTap(viewElements: [[Swift.String : Any]], points: Swift.Int)
+extension PXKit::GainsightPX {
+  @objc dynamic public func trackTap(viewElements: [[Swift::String : Any]], points: Swift::Int)
 }
 public class PXNetworking {
-  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
-  public static func fetch(url: Foundation.URL, params: [Swift.String : Any]?, headers: [Swift.String : Swift.String]?, httpMethod: PXKit.PXNetworking.HTTPMethod, completion: @escaping (Foundation.Data?, Foundation.HTTPURLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionTask?
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
+  public static func fetch(url: Foundation::URL, params: [Swift::String : Any]?, headers: [Swift::String : Swift::String]?, httpMethod: PXKit::PXNetworking.PXKit::HTTPMethod, completion: @escaping (Foundation::Data?, Foundation::HTTPURLResponse?, (any Swift::Error)?) -> Swift::Void) -> Foundation::URLSessionTask?
   @discardableResult
-  public static func downloadFile(url: Foundation.URL, params: [Swift.String : Any]?, headers: [Swift.String : Swift.String]?, httpMethod: PXKit.PXNetworking.HTTPMethod, destinationFilePath: Foundation.URL, completion: @escaping (Foundation.URL?, Foundation.HTTPURLResponse?, (any Swift.Error)?) -> Swift.Void) -> Foundation.URLSessionTask?
-  #endif
+  public static func downloadFile(url: Foundation::URL, params: [Swift::String : Any]?, headers: [Swift::String : Swift::String]?, httpMethod: PXKit::PXNetworking.PXKit::HTTPMethod, destinationFilePath: Foundation::URL, completion: @escaping (Foundation::URL?, Foundation::HTTPURLResponse?, (any Swift::Error)?) -> Swift::Void) -> Foundation::URLSessionTask?
   @objc deinit
 }
-extension PXKit.PXNetworking {
-  public enum AFError : Swift.Error {
-    public enum ParameterEncodingFailureReason : @unchecked Swift.Sendable {
+extension PXKit::PXNetworking {
+  public enum AFError : Swift::Error {
+    public enum ParameterEncodingFailureReason : @unchecked Swift::Sendable {
       case missingURL
-      case jsonEncodingFailed(error: any Swift.Error)
-      case propertyListEncodingFailed(error: any Swift.Error)
+      case jsonEncodingFailed(error: any Swift::Error)
+      case propertyListEncodingFailed(error: any Swift::Error)
     }
-    public enum MultipartEncodingFailureReason : @unchecked Swift.Sendable {
-      case bodyPartURLInvalid(url: Foundation.URL)
-      case bodyPartFilenameInvalid(in: Foundation.URL)
-      case bodyPartFileNotReachable(at: Foundation.URL)
-      case bodyPartFileNotReachableWithError(atURL: Foundation.URL, error: any Swift.Error)
-      case bodyPartFileIsDirectory(at: Foundation.URL)
-      case bodyPartFileSizeNotAvailable(at: Foundation.URL)
-      case bodyPartFileSizeQueryFailedWithError(forURL: Foundation.URL, error: any Swift.Error)
-      case bodyPartInputStreamCreationFailed(for: Foundation.URL)
-      case outputStreamCreationFailed(for: Foundation.URL)
-      case outputStreamFileAlreadyExists(at: Foundation.URL)
-      case outputStreamURLInvalid(url: Foundation.URL)
-      case outputStreamWriteFailed(error: any Swift.Error)
-      case inputStreamReadFailed(error: any Swift.Error)
+    public enum MultipartEncodingFailureReason : @unchecked Swift::Sendable {
+      case bodyPartURLInvalid(url: Foundation::URL)
+      case bodyPartFilenameInvalid(in: Foundation::URL)
+      case bodyPartFileNotReachable(at: Foundation::URL)
+      case bodyPartFileNotReachableWithError(atURL: Foundation::URL, error: any Swift::Error)
+      case bodyPartFileIsDirectory(at: Foundation::URL)
+      case bodyPartFileSizeNotAvailable(at: Foundation::URL)
+      case bodyPartFileSizeQueryFailedWithError(forURL: Foundation::URL, error: any Swift::Error)
+      case bodyPartInputStreamCreationFailed(for: Foundation::URL)
+      case outputStreamCreationFailed(for: Foundation::URL)
+      case outputStreamFileAlreadyExists(at: Foundation::URL)
+      case outputStreamURLInvalid(url: Foundation::URL)
+      case outputStreamWriteFailed(error: any Swift::Error)
+      case inputStreamReadFailed(error: any Swift::Error)
     }
-    public enum ResponseValidationFailureReason : Swift.Sendable {
+    public enum ResponseValidationFailureReason : Swift::Sendable {
       case dataFileNil
-      case dataFileReadFailed(at: Foundation.URL)
-      case missingContentType(acceptableContentTypes: [Swift.String])
-      case unacceptableContentType(acceptableContentTypes: [Swift.String], responseContentType: Swift.String)
-      case unacceptableStatusCode(code: Swift.Int)
+      case dataFileReadFailed(at: Foundation::URL)
+      case missingContentType(acceptableContentTypes: [Swift::String])
+      case unacceptableContentType(acceptableContentTypes: [Swift::String], responseContentType: Swift::String)
+      case unacceptableStatusCode(code: Swift::Int)
     }
-    public enum ResponseSerializationFailureReason : @unchecked Swift.Sendable {
+    public enum ResponseSerializationFailureReason : @unchecked Swift::Sendable {
       case inputDataNil
       case inputDataNilOrZeroLength
       case inputFileNil
-      case inputFileReadFailed(at: Foundation.URL)
-      case stringSerializationFailed(encoding: Swift.String.Encoding)
-      case jsonSerializationFailed(error: any Swift.Error)
-      case propertyListSerializationFailed(error: any Swift.Error)
+      case inputFileReadFailed(at: Foundation::URL)
+      case stringSerializationFailed(encoding: Swift::String.Foundation::Encoding)
+      case jsonSerializationFailed(error: any Swift::Error)
+      case propertyListSerializationFailed(error: any Swift::Error)
     }
-    case invalidURL(url: any PXKit.PXNetworkingURLConvertible)
-    case parameterEncodingFailed(reason: PXKit.PXNetworking.AFError.ParameterEncodingFailureReason)
-    case multipartEncodingFailed(reason: PXKit.PXNetworking.AFError.MultipartEncodingFailureReason)
-    case responseValidationFailed(reason: PXKit.PXNetworking.AFError.ResponseValidationFailureReason)
-    case responseSerializationFailed(reason: PXKit.PXNetworking.AFError.ResponseSerializationFailureReason)
+    case invalidURL(url: any PXKit::PXNetworkingURLConvertible)
+    case parameterEncodingFailed(reason: PXKit::PXNetworking.PXKit::AFError.PXKit::ParameterEncodingFailureReason)
+    case multipartEncodingFailed(reason: PXKit::PXNetworking.PXKit::AFError.PXKit::MultipartEncodingFailureReason)
+    case responseValidationFailed(reason: PXKit::PXNetworking.PXKit::AFError.PXKit::ResponseValidationFailureReason)
+    case responseSerializationFailed(reason: PXKit::PXNetworking.PXKit::AFError.PXKit::ResponseSerializationFailureReason)
   }
 }
-extension PXKit.PXNetworking.AFError {
-  public var isInvalidURLError: Swift.Bool {
+extension PXKit::PXNetworking.PXKit::AFError {
+  public var isInvalidURLError: Swift::Bool {
     get
   }
-  public var isParameterEncodingError: Swift.Bool {
+  public var isParameterEncodingError: Swift::Bool {
     get
   }
-  public var isMultipartEncodingError: Swift.Bool {
+  public var isMultipartEncodingError: Swift::Bool {
     get
   }
-  public var isResponseValidationError: Swift.Bool {
+  public var isResponseValidationError: Swift::Bool {
     get
   }
-  public var isResponseSerializationError: Swift.Bool {
+  public var isResponseSerializationError: Swift::Bool {
     get
   }
 }
-extension PXKit.PXNetworking.AFError {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var urlConvertible: (any PXKit.PXNetworkingURLConvertible)? {
+extension PXKit::PXNetworking.PXKit::AFError {
+  public var urlConvertible: (any PXKit::PXNetworkingURLConvertible)? {
     get
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var url: Foundation.URL? {
+  public var url: Foundation::URL? {
     get
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var underlyingError: (any Swift.Error)? {
+  public var underlyingError: (any Swift::Error)? {
     get
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var acceptableContentTypes: [Swift.String]? {
+  public var acceptableContentTypes: [Swift::String]? {
     get
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var responseContentType: Swift.String? {
+  public var responseContentType: Swift::String? {
     get
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var responseCode: Swift.Int? {
+  public var responseCode: Swift::Int? {
     get
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var failedStringEncoding: Swift.String.Encoding? {
+  public var failedStringEncoding: Swift::String.Foundation::Encoding? {
     get
   }
-  #endif
 }
-extension PXKit.PXNetworking.AFError : Foundation.LocalizedError {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var errorDescription: Swift.String? {
+extension PXKit::PXNetworking.PXKit::AFError : Foundation::LocalizedError {
+  public var errorDescription: Swift::String? {
     get
   }
-  #endif
 }
-extension UIKit.UIImage {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func px_af_threadSafeImage(with data: Foundation.Data) -> UIKit.UIImage?
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func px_af_threadSafeImage(with data: Foundation.Data, scale: CoreFoundation.CGFloat) -> UIKit.UIImage?
-  #endif
+extension UIKit::UIImage {
+  public static func px_af_threadSafeImage(with data: Foundation::Data) -> UIKit::UIImage?
+  public static func px_af_threadSafeImage(with data: Foundation::Data, scale: CoreFoundation::CGFloat) -> UIKit::UIImage?
 }
-extension UIKit.UIImage {
-  public var px_af_inflated: Swift.Bool {
+extension UIKit::UIImage {
+  public var px_af_inflated: Swift::Bool {
     get
     set
   }
   public func px_af_inflate()
 }
-extension UIKit.UIImage {
-  public var px_af_containsAlphaComponent: Swift.Bool {
+extension UIKit::UIImage {
+  public var px_af_containsAlphaComponent: Swift::Bool {
     get
   }
-  public var px_af_isOpaque: Swift.Bool {
+  public var px_af_isOpaque: Swift::Bool {
     get
   }
 }
-extension UIKit.UIImage {
-  public func px_af_imageScaled(to size: CoreFoundation.CGSize) -> UIKit.UIImage
-  public func px_af_imageAspectScaled(toFit size: CoreFoundation.CGSize) -> UIKit.UIImage
-  public func px_af_imageAspectScaled(toFill size: CoreFoundation.CGSize) -> UIKit.UIImage
+extension UIKit::UIImage {
+  public func px_af_imageScaled(to size: CoreFoundation::CGSize) -> UIKit::UIImage
+  public func px_af_imageAspectScaled(toFit size: CoreFoundation::CGSize) -> UIKit::UIImage
+  public func px_af_imageAspectScaled(toFill size: CoreFoundation::CGSize) -> UIKit::UIImage
 }
-extension UIKit.UIImage {
-  public func px_af_imageRounded(withCornerRadius radius: CoreFoundation.CGFloat, divideRadiusByImageScale: Swift.Bool = false) -> UIKit.UIImage
-  public func px_af_imageRoundedIntoCircle() -> UIKit.UIImage
+extension UIKit::UIImage {
+  public func px_af_imageRounded(withCornerRadius radius: CoreFoundation::CGFloat, divideRadiusByImageScale: Swift::Bool = false) -> UIKit::UIImage
+  public func px_af_imageRoundedIntoCircle() -> UIKit::UIImage
 }
 @available(iOS 9.0, *)
-extension UIKit.UIImage {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public func px_af_imageFiltered(withCoreImageFilter name: Swift.String, parameters: [Swift.String : Any]? = nil) -> UIKit.UIImage?
-  #endif
+extension UIKit::UIImage {
+  public func px_af_imageFiltered(withCoreImageFilter name: Swift::String, parameters: [Swift::String : Any]? = nil) -> UIKit::UIImage?
 }
 public protocol PXNetworkingImageCache {
-  func px_add(_ image: PXKit.PXNetworkingImage, withIdentifier identifier: Swift.String)
-  func px_removeImage(withIdentifier identifier: Swift.String) -> Swift.Bool
+  func px_add(_ image: PXKit::PXNetworkingImage, withIdentifier identifier: Swift::String)
+  func px_removeImage(withIdentifier identifier: Swift::String) -> Swift::Bool
   @discardableResult
-  func px_removeAllImages() -> Swift.Bool
-  #if compiler(>=5.3) && $NonescapableTypes
-  func px_image(withIdentifier identifier: Swift.String) -> PXKit.PXNetworkingImage?
-  #endif
+  func px_removeAllImages() -> Swift::Bool
+  func px_image(withIdentifier identifier: Swift::String) -> PXKit::PXNetworkingImage?
 }
-public protocol PXNetworkingImageRequestCache : PXKit.PXNetworkingImageCache {
-  #if compiler(>=5.3) && $NonescapableTypes
-  func px_add(_ image: PXKit.PXNetworkingImage, for request: Foundation.URLRequest, withIdentifier identifier: Swift.String?)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  func px_removeImage(for request: Foundation.URLRequest, withIdentifier identifier: Swift.String?) -> Swift.Bool
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  func px_image(for request: Foundation.URLRequest, withIdentifier identifier: Swift.String?) -> PXKit.PXNetworkingImage?
-  #endif
+public protocol PXNetworkingImageRequestCache : PXKit::PXNetworkingImageCache {
+  func px_add(_ image: PXKit::PXNetworkingImage, for request: Foundation::URLRequest, withIdentifier identifier: Swift::String?)
+  func px_removeImage(for request: Foundation::URLRequest, withIdentifier identifier: Swift::String?) -> Swift::Bool
+  func px_image(for request: Foundation::URLRequest, withIdentifier identifier: Swift::String?) -> PXKit::PXNetworkingImage?
 }
-extension PXKit.PXNetworking {
-  open class AutoPurgingImageCache : PXKit.PXNetworkingImageRequestCache {
-    open var memoryUsage: Swift.UInt64 {
+extension PXKit::PXNetworking {
+  open class AutoPurgingImageCache : PXKit::PXNetworkingImageRequestCache {
+    open var memoryUsage: Swift::UInt64 {
       get
     }
-    final public let memoryCapacity: Swift.UInt64
-    final public let preferredMemoryUsageAfterPurge: Swift.UInt64
-    public init(memoryCapacity: Swift.UInt64 = 100_000_000, preferredMemoryUsageAfterPurge: Swift.UInt64 = 60_000_000)
+    final public let memoryCapacity: Swift::UInt64
+    final public let preferredMemoryUsageAfterPurge: Swift::UInt64
+    public init(memoryCapacity: Swift::UInt64 = 100_000_000, preferredMemoryUsageAfterPurge: Swift::UInt64 = 60_000_000)
     @objc deinit
-    #if compiler(>=5.3) && $NonescapableTypes
-    open func px_add(_ image: PXKit.PXNetworkingImage, for request: Foundation.URLRequest, withIdentifier identifier: Swift.String? = nil)
-    #endif
-    open func px_add(_ image: PXKit.PXNetworkingImage, withIdentifier identifier: Swift.String)
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func px_add(_ image: PXKit::PXNetworkingImage, for request: Foundation::URLRequest, withIdentifier identifier: Swift::String? = nil)
+    open func px_add(_ image: PXKit::PXNetworkingImage, withIdentifier identifier: Swift::String)
     @discardableResult
-    open func px_removeImage(for request: Foundation.URLRequest, withIdentifier identifier: Swift.String?) -> Swift.Bool
-    #endif
+    open func px_removeImage(for request: Foundation::URLRequest, withIdentifier identifier: Swift::String?) -> Swift::Bool
     @discardableResult
-    open func px_removeImages(matching request: Foundation.URLRequest) -> Swift.Bool
+    open func px_removeImages(matching request: Foundation::URLRequest) -> Swift::Bool
     @discardableResult
-    open func px_removeImage(withIdentifier identifier: Swift.String) -> Swift.Bool
+    open func px_removeImage(withIdentifier identifier: Swift::String) -> Swift::Bool
     @discardableResult
-    @objc open func px_removeAllImages() -> Swift.Bool
-    #if compiler(>=5.3) && $NonescapableTypes
-    open func px_image(for request: Foundation.URLRequest, withIdentifier identifier: Swift.String? = nil) -> PXKit.PXNetworkingImage?
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    open func px_image(withIdentifier identifier: Swift.String) -> PXKit.PXNetworkingImage?
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    open func px_imageCacheKey(for request: Foundation.URLRequest, withIdentifier identifier: Swift.String?) -> Swift.String
-    #endif
+    @objc open func px_removeAllImages() -> Swift::Bool
+    open func px_image(for request: Foundation::URLRequest, withIdentifier identifier: Swift::String? = nil) -> PXKit::PXNetworkingImage?
+    open func px_image(withIdentifier identifier: Swift::String) -> PXKit::PXNetworkingImage?
+    open func px_imageCacheKey(for request: Foundation::URLRequest, withIdentifier identifier: Swift::String?) -> Swift::String
   }
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   open class ServerTrustPolicyManager {
-    final public let policies: [Swift.String : PXKit.PXNetworking.ServerTrustPolicy]
-    public init(policies: [Swift.String : PXKit.PXNetworking.ServerTrustPolicy])
-    #if compiler(>=5.3) && $NonescapableTypes
-    open func serverTrustPolicy(forHost host: Swift.String) -> PXKit.PXNetworking.ServerTrustPolicy?
-    #endif
+    final public let policies: [Swift::String : PXKit::PXNetworking.PXKit::ServerTrustPolicy]
+    public init(policies: [Swift::String : PXKit::PXNetworking.PXKit::ServerTrustPolicy])
+    open func serverTrustPolicy(forHost host: Swift::String) -> PXKit::PXNetworking.PXKit::ServerTrustPolicy?
     @objc deinit
   }
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   public enum ServerTrustPolicy {
-    case performDefaultEvaluation(validateHost: Swift.Bool)
-    case performRevokedEvaluation(validateHost: Swift.Bool, revocationFlags: CoreFoundation.CFOptionFlags)
-    case pinCertificates(certificates: [Security.SecCertificate], validateCertificateChain: Swift.Bool, validateHost: Swift.Bool)
-    case pinPublicKeys(publicKeys: [Security.SecKey], validateCertificateChain: Swift.Bool, validateHost: Swift.Bool)
+    case performDefaultEvaluation(validateHost: Swift::Bool)
+    case performRevokedEvaluation(validateHost: Swift::Bool, revocationFlags: CoreFoundation::CFOptionFlags)
+    case pinCertificates(certificates: [Security::SecCertificate], validateCertificateChain: Swift::Bool, validateHost: Swift::Bool)
+    case pinPublicKeys(publicKeys: [Security::SecKey], validateCertificateChain: Swift::Bool, validateHost: Swift::Bool)
     case disableEvaluation
-    case customEvaluation((_ serverTrust: Security.SecTrust, _ host: Swift.String) -> Swift.Bool)
-    public static func certificates(in bundle: Foundation.Bundle = Bundle.main) -> [Security.SecCertificate]
-    public static func publicKeys(in bundle: Foundation.Bundle = Bundle.main) -> [Security.SecKey]
-    public func evaluate(_ serverTrust: Security.SecTrust, forHost host: Swift.String) -> Swift.Bool
+    case customEvaluation((_ serverTrust: Security::SecTrust, _ host: Swift::String) -> Swift::Bool)
+    public static func certificates(in bundle: Foundation::Bundle = Bundle.main) -> [Security::SecCertificate]
+    public static func publicKeys(in bundle: Foundation::Bundle = Bundle.main) -> [Security::SecKey]
+    public func evaluate(_ serverTrust: Security::SecTrust, forHost host: Swift::String) -> Swift::Bool
   }
 }
-public typealias AnimationOptions = UIKit.UIView.AnimationOptions
-extension UIKit.UIImageView {
+public typealias AnimationOptions = UIKit::UIView.UIKit::AnimationOptions
+extension UIKit::UIImageView {
   public enum PXNetworkingImageTransition {
     case noTransition
-    case crossDissolve(Foundation.TimeInterval)
-    case curlDown(Foundation.TimeInterval)
-    case curlUp(Foundation.TimeInterval)
-    case flipFromBottom(Foundation.TimeInterval)
-    case flipFromLeft(Foundation.TimeInterval)
-    case flipFromRight(Foundation.TimeInterval)
-    case flipFromTop(Foundation.TimeInterval)
-    case custom(duration: Foundation.TimeInterval, animationOptions: UIKit.UIView.AnimationOptions, animations: (UIKit.UIImageView, PXKit.PXNetworkingImage) -> Swift.Void, completion: ((Swift.Bool) -> Swift.Void)?)
-    public var duration: Foundation.TimeInterval {
+    case crossDissolve(Foundation::TimeInterval)
+    case curlDown(Foundation::TimeInterval)
+    case curlUp(Foundation::TimeInterval)
+    case flipFromBottom(Foundation::TimeInterval)
+    case flipFromLeft(Foundation::TimeInterval)
+    case flipFromRight(Foundation::TimeInterval)
+    case flipFromTop(Foundation::TimeInterval)
+    case custom(duration: Foundation::TimeInterval, animationOptions: UIKit::UIView.UIKit::AnimationOptions, animations: (UIKit::UIImageView, PXKit::PXNetworkingImage) -> Swift::Void, completion: ((Swift::Bool) -> Swift::Void)?)
+    public var duration: Foundation::TimeInterval {
       get
     }
-    public var animationOptions: UIKit.UIView.AnimationOptions {
+    public var animationOptions: UIKit::UIView.UIKit::AnimationOptions {
       get
     }
-    public var animations: (UIKit.UIImageView, PXKit.PXNetworkingImage) -> Swift.Void {
+    public var animations: (UIKit::UIImageView, PXKit::PXNetworkingImage) -> Swift::Void {
       get
     }
-    #if compiler(>=5.3) && $NonescapableTypes
-    public var completion: ((Swift.Bool) -> Swift.Void)? {
+    public var completion: ((Swift::Bool) -> Swift::Void)? {
       get
     }
-    #endif
   }
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public var px_af_imageDownloader: PXKit.PXNetworking.ImageDownloader? {
+  @_Concurrency::MainActor @preconcurrency public var px_af_imageDownloader: PXKit::PXNetworking.PXKit::ImageDownloader? {
     get
     set(downloader)
   }
-  #endif
-  @_Concurrency.MainActor @preconcurrency public class var px_af_sharedImageDownloader: PXKit.PXNetworking.ImageDownloader {
+  @_Concurrency::MainActor @preconcurrency public class var px_af_sharedImageDownloader: PXKit::PXNetworking.PXKit::ImageDownloader {
     get
     set
   }
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public func px_af_setImage(withURL url: Foundation.URL, placeholderImage: UIKit.UIImage? = nil, filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, imageTransition: UIKit.UIImageView.PXNetworkingImageTransition = .noTransition, runImageTransitionIfCached: Swift.Bool = false, completion: ((PXKit.PXNetworking.DataResponse<UIKit.UIImage>) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public func af_setImage(withURLRequest urlRequest: any PXKit.PXNetworkingURLRequestConvertible, placeholderImage: UIKit.UIImage? = nil, filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, imageTransition: UIKit.UIImageView.PXNetworkingImageTransition = .noTransition, runImageTransitionIfCached: Swift.Bool = false, completion: ((PXKit.PXNetworking.DataResponse<UIKit.UIImage>) -> Swift.Void)? = nil)
-  #endif
-  @_Concurrency.MainActor @preconcurrency public func px_af_cancelImageRequest()
-  @_Concurrency.MainActor @preconcurrency public func px_run(_ imageTransition: UIKit.UIImageView.PXNetworkingImageTransition, with image: PXKit.PXNetworkingImage)
+  @_Concurrency::MainActor @preconcurrency public func px_af_setImage(withURL url: Foundation::URL, placeholderImage: UIKit::UIImage? = nil, filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, imageTransition: UIKit::UIImageView.PXKit::PXNetworkingImageTransition = .noTransition, runImageTransitionIfCached: Swift::Bool = false, completion: ((PXKit::PXNetworking.PXKit::DataResponse<UIKit::UIImage>) -> Swift::Void)? = nil)
+  @_Concurrency::MainActor @preconcurrency public func af_setImage(withURLRequest urlRequest: any PXKit::PXNetworkingURLRequestConvertible, placeholderImage: UIKit::UIImage? = nil, filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, imageTransition: UIKit::UIImageView.PXKit::PXNetworkingImageTransition = .noTransition, runImageTransitionIfCached: Swift::Bool = false, completion: ((PXKit::PXNetworking.PXKit::DataResponse<UIKit::UIImage>) -> Swift::Void)? = nil)
+  @_Concurrency::MainActor @preconcurrency public func px_af_cancelImageRequest()
+  @_Concurrency::MainActor @preconcurrency public func px_run(_ imageTransition: UIKit::UIImageView.PXKit::PXNetworkingImageTransition, with image: PXKit::PXNetworkingImage)
 }
-@objc(PXAccount) public class Account : ObjectiveC.NSObject {
-  @objc final public let id: Swift.String
-  @objc public var name: Swift.String?
-  @objc public var trackedSubscriptionId: Swift.String?
-  @objc public var industry: Swift.String?
-  @objc public var numberOfEmployees: Foundation.NSNumber?
-  @objc public var sicCode: Swift.String?
-  @objc public var website: Swift.String?
-  @objc public var naicsCode: Swift.String?
-  @objc public var plan: Swift.String?
-  @objc public var countryCode: Swift.String?
-  @objc public var countryName: Swift.String?
-  @objc public var stateCode: Swift.String?
-  @objc public var stateName: Swift.String?
-  @objc public var city: Swift.String?
-  @objc public var street: Swift.String?
-  @objc public var continent: Swift.String?
-  @objc public var postalCode: Swift.String?
-  @objc public var regionName: Swift.String?
-  @objc public var timeZone: Swift.String?
-  @objc public var latitude: Foundation.NSNumber?
-  @objc public var longitude: Foundation.NSNumber?
-  @objc public var sfdcId: Swift.String?
-  @objc public var parentGroupId: Swift.String?
-  @objc public var customAttributes: [Swift.String : Any]?
-  @objc public init(id: Swift.String)
+@objc(PXAccount) public class Account : ObjectiveC::NSObject {
+  @objc final public let id: Swift::String
+  @objc public var name: Swift::String?
+  @objc public var trackedSubscriptionId: Swift::String?
+  @objc public var industry: Swift::String?
+  @objc public var numberOfEmployees: Foundation::NSNumber?
+  @objc public var sicCode: Swift::String?
+  @objc public var website: Swift::String?
+  @objc public var naicsCode: Swift::String?
+  @objc public var plan: Swift::String?
+  @objc public var countryCode: Swift::String?
+  @objc public var countryName: Swift::String?
+  @objc public var stateCode: Swift::String?
+  @objc public var stateName: Swift::String?
+  @objc public var city: Swift::String?
+  @objc public var street: Swift::String?
+  @objc public var continent: Swift::String?
+  @objc public var postalCode: Swift::String?
+  @objc public var regionName: Swift::String?
+  @objc public var timeZone: Swift::String?
+  @objc public var latitude: Foundation::NSNumber?
+  @objc public var longitude: Foundation::NSNumber?
+  @objc public var sfdcId: Swift::String?
+  @objc public var parentGroupId: Swift::String?
+  @objc public var customAttributes: [Swift::String : Any]?
+  @objc public init(id: Swift::String)
   @objc deinit
 }
-@objc public class GainsightPX : ObjectiveC.NSObject, @unchecked Swift.Sendable {
-  @objc weak public var uiMapperConsumer: (any PXKit.UIMapperConsuming)? {
+@objc public class GainsightPX : ObjectiveC::NSObject, @unchecked Swift::Sendable {
+  @objc weak public var uiMapperConsumer: (any PXKit::UIMapperConsuming)? {
     @objc get
     @objc set
   }
-  @objc public var analyticsConfigurations: PXKit.AnalyticsConfigurations!
-  @objc public var globalContext: PXKit.GlobalContext?
-  @objc public static let shared: PXKit.GainsightPX
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func initialise(configurations: PXKit.AnalyticsConfigurations, completionBlock: PXKit.GainsightPXErrorBlock?, callback: PXKit.PXEngagementCallBack?)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func initialise(configurations: PXKit.AnalyticsConfigurations, completionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
+  @objc public var analyticsConfigurations: PXKit::AnalyticsConfigurations!
+  @objc public var globalContext: PXKit::GlobalContext?
+  @objc public static let shared: PXKit::GainsightPX
+  @objc public func initialise(configurations: PXKit::AnalyticsConfigurations, completionBlock: PXKit::GainsightPXErrorBlock?, callback: PXKit::PXEngagementCallBack?)
+  @objc public func initialise(configurations: PXKit::AnalyticsConfigurations, completionBlock: PXKit::GainsightPXErrorBlock? = nil)
   @available(*, deprecated, message: "Use GainsightPX.shared instead")
-  @objc public class func sharedInstance() -> PXKit.GainsightPX
-  @objc public class func debugLogs(enable: Swift.Bool)
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func custom(event: Swift.String, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func custom(event: Swift.String, properties: [Swift.String : Any]?, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func screen(title: Swift.String, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func screen(title: Swift.String, properties: [Swift.String : Any]?, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func screen(screen: PXKit.ScreenEvent, properties: [Swift.String : Any]?, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func identify(userId: Swift.String, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func identify(user: PXKit.User, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
-  @objc public func setSupportedInterfaceOrientations(orientation: UIKit.UIInterfaceOrientationMask)
+  @objc public class func sharedInstance() -> PXKit::GainsightPX
+  @objc public class func debugLogs(enable: Swift::Bool)
+  @objc public func custom(event: Swift::String, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
+  @objc public func custom(event: Swift::String, properties: [Swift::String : Any]?, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
+  @objc public func screen(title: Swift::String, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
+  @objc public func screen(title: Swift::String, properties: [Swift::String : Any]?, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
+  @objc public func screen(screen: PXKit::ScreenEvent, properties: [Swift::String : Any]?, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
+  @objc public func identify(userId: Swift::String, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
+  @objc public func identify(user: PXKit::User, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
+  @objc public func setSupportedInterfaceOrientations(orientation: UIKit::UIInterfaceOrientationMask)
   @available(*, deprecated, message: "Use startTracking(webview:) instead.")
-  @objc public func startJSBridge(webview: WebKit.WKWebView)
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func startTracking(webview: WebKit.WKWebView?)
-  #endif
+  @objc public func startJSBridge(webview: WebKit::WKWebView)
+  @objc public func startTracking(webview: WebKit::WKWebView?)
   @objc public func stopTrackingWebView()
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func globalContext(context: PXKit.GlobalContext?)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func flush(errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
+  @objc public func globalContext(context: PXKit::GlobalContext?)
+  @objc public func flush(errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
   @objc public class func enable()
   @objc public class func disable()
-  @objc public func engagements(enable: Swift.Bool, showMultiple: Swift.Bool = false)
+  @objc public func engagements(enable: Swift::Bool, showMultiple: Swift::Bool = false)
   @objc public func reset()
   @objc public func hardReset()
-  @objc public class func libraryVersion() -> Swift.String
-  @objc public class func bridgeName() -> Swift.String
-  @objc public func enterEditingMode(url: Foundation.URL)
+  @objc public class func libraryVersion() -> Swift::String
+  @objc public class func bridgeName() -> Swift::String
+  @objc public func enterEditingMode(url: Foundation::URL)
   @objc public func exitEditingMode()
   @objc deinit
 }
-extension PXKit.GainsightPX {
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc dynamic public func identify(user: PXKit.User, account: PXKit.Account?, errorCompletionBlock: PXKit.GainsightPXErrorBlock? = nil)
-  #endif
+extension PXKit::GainsightPX {
+  @objc dynamic public func identify(user: PXKit::User, account: PXKit::Account?, errorCompletionBlock: PXKit::GainsightPXErrorBlock? = nil)
 }
-extension PXKit.PXNetworking {
-  @objc open class TaskDelegate : ObjectiveC.NSObject, @unchecked Swift.Sendable {
-    final public let queue: Foundation.OperationQueue
-    #if compiler(>=5.3) && $NonescapableTypes
-    public var data: Foundation.Data? {
+extension PXKit::PXNetworking {
+  @objc open class TaskDelegate : ObjectiveC::NSObject, @unchecked Swift::Sendable {
+    final public let queue: Foundation::OperationQueue
+    public var data: Foundation::Data? {
       get
     }
-    #endif
-    public var error: (any Swift.Error)?
+    public var error: (any Swift::Error)?
     @objc deinit
   }
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   open class NetworkReachabilityManager {
     public enum NetworkReachabilityStatus {
       case unknown
       case notReachable
-      case reachable(PXKit.PXNetworking.NetworkReachabilityManager.ConnectionType)
+      case reachable(PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::ConnectionType)
     }
     public enum ConnectionType {
       case ethernetOrWiFi
       case wwan
-      public static func == (a: PXKit.PXNetworking.NetworkReachabilityManager.ConnectionType, b: PXKit.PXNetworking.NetworkReachabilityManager.ConnectionType) -> Swift.Bool
-      public func hash(into hasher: inout Swift.Hasher)
-      public var hashValue: Swift.Int {
+      public static func == (a: PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::ConnectionType, b: PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::ConnectionType) -> Swift::Bool
+      public func hash(into hasher: inout Swift::Hasher)
+      public var hashValue: Swift::Int {
         get
       }
     }
-    public typealias Listener = (PXKit.PXNetworking.NetworkReachabilityManager.NetworkReachabilityStatus) -> Swift.Void
-    open var isReachable: Swift.Bool {
+    public typealias Listener = (PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::NetworkReachabilityStatus) -> Swift::Void
+    open var isReachable: Swift::Bool {
       get
     }
-    open var isReachableOnWWAN: Swift.Bool {
+    open var isReachableOnWWAN: Swift::Bool {
       get
     }
-    open var isReachableOnEthernetOrWiFi: Swift.Bool {
+    open var isReachableOnEthernetOrWiFi: Swift::Bool {
       get
     }
-    open var networkReachabilityStatus: PXKit.PXNetworking.NetworkReachabilityManager.NetworkReachabilityStatus {
+    open var networkReachabilityStatus: PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::NetworkReachabilityStatus {
       get
     }
-    open var listenerQueue: Dispatch.DispatchQueue
-    open var listener: PXKit.PXNetworking.NetworkReachabilityManager.Listener?
-    #if compiler(>=5.3) && $NonescapableTypes
-    open var flags: SystemConfiguration.SCNetworkReachabilityFlags? {
+    open var listenerQueue: Dispatch::DispatchQueue
+    open var listener: PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::Listener?
+    open var flags: SystemConfiguration::SCNetworkReachabilityFlags? {
       get
     }
-    #endif
-    open var previousFlags: SystemConfiguration.SCNetworkReachabilityFlags
-    #if compiler(>=5.3) && $NonescapableTypes
-    convenience public init?(host: Swift.String)
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
+    open var previousFlags: SystemConfiguration::SCNetworkReachabilityFlags
+    convenience public init?(host: Swift::String)
     convenience public init?()
-    #endif
     @objc deinit
     @discardableResult
-    open func startListening() -> Swift.Bool
+    open func startListening() -> Swift::Bool
     open func stopListening()
   }
 }
-extension PXKit.PXNetworking.NetworkReachabilityManager.NetworkReachabilityStatus : Swift.Equatable {
+extension PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::NetworkReachabilityStatus : Swift::Equatable {
 }
-public func == (lhs: PXKit.PXNetworking.NetworkReachabilityManager.NetworkReachabilityStatus, rhs: PXKit.PXNetworking.NetworkReachabilityManager.NetworkReachabilityStatus) -> Swift.Bool
-extension PXKit.PXNetworking {
+public func == (lhs: PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::NetworkReachabilityStatus, rhs: PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::NetworkReachabilityStatus) -> Swift::Bool
+extension PXKit::PXNetworking {
   open class RequestReceipt {
-    final public let request: PXKit.PXNetworking.Request
-    final public let receiptID: Swift.String
+    final public let request: PXKit::PXNetworking.PXKit::Request
+    final public let receiptID: Swift::String
     @objc deinit
   }
-  open class ImageDownloader : @unchecked Swift.Sendable {
-    public typealias CompletionHandler = (PXKit.PXNetworking.DataResponse<PXKit.PXNetworkingImage>) -> Swift.Void
-    public typealias ProgressHandler = PXKit.PXNetworking.DataRequest.ProgressHandler
+  open class ImageDownloader : @unchecked Swift::Sendable {
+    public typealias CompletionHandler = (PXKit::PXNetworking.PXKit::DataResponse<PXKit::PXNetworkingImage>) -> Swift::Void
+    public typealias ProgressHandler = PXKit::PXNetworking.PXKit::DataRequest.PXKit::ProgressHandler
     public enum DownloadPrioritization {
       case fifo, lifo
-      public static func == (a: PXKit.PXNetworking.ImageDownloader.DownloadPrioritization, b: PXKit.PXNetworking.ImageDownloader.DownloadPrioritization) -> Swift.Bool
-      public func hash(into hasher: inout Swift.Hasher)
-      public var hashValue: Swift.Int {
+      public static func == (a: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::DownloadPrioritization, b: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::DownloadPrioritization) -> Swift::Bool
+      public func hash(into hasher: inout Swift::Hasher)
+      public var hashValue: Swift::Int {
         get
       }
     }
-    final public let imageCache: (any PXKit.PXNetworkingImageRequestCache)?
-    open var credential: Foundation.URLCredential? {
+    final public let imageCache: (any PXKit::PXNetworkingImageRequestCache)?
+    open var credential: Foundation::URLCredential? {
       get
     }
-    public var imageResponseSerializer: PXKit.PXNetworking.DataResponseSerializer<PXKit.PXNetworkingImage>
-    final public let sessionManager: PXKit.PXNetworking.SessionManager
-    public static let `default`: PXKit.PXNetworking.ImageDownloader
-    open class func defaultURLSessionConfiguration() -> Foundation.URLSessionConfiguration
-    open class func defaultURLCache() -> Foundation.URLCache
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(configuration: Foundation.URLSessionConfiguration = ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: PXKit.PXNetworking.ImageDownloader.DownloadPrioritization = .fifo, maximumActiveDownloads: Swift.Int = 4, imageCache: (any PXKit.PXNetworkingImageRequestCache)? = AutoPurgingImageCache())
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(sessionManager: PXKit.PXNetworking.SessionManager, downloadPrioritization: PXKit.PXNetworking.ImageDownloader.DownloadPrioritization = .fifo, maximumActiveDownloads: Swift.Int = 4, imageCache: (any PXKit.PXNetworkingImageRequestCache)? = AutoPurgingImageCache())
-    #endif
-    open func addAuthentication(user: Swift.String, password: Swift.String, persistence: Foundation.URLCredential.Persistence = .forSession)
-    open func addAuthentication(usingCredential credential: Foundation.URLCredential)
-    #if compiler(>=5.3) && $NonescapableTypes
+    public var imageResponseSerializer: PXKit::PXNetworking.PXKit::DataResponseSerializer<PXKit::PXNetworkingImage>
+    final public let sessionManager: PXKit::PXNetworking.PXKit::SessionManager
+    public static let `default`: PXKit::PXNetworking.PXKit::ImageDownloader
+    open class func defaultURLSessionConfiguration() -> Foundation::URLSessionConfiguration
+    open class func defaultURLCache() -> Foundation::URLCache
+    public init(configuration: Foundation::URLSessionConfiguration = ImageDownloader.defaultURLSessionConfiguration(), downloadPrioritization: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::DownloadPrioritization = .fifo, maximumActiveDownloads: Swift::Int = 4, imageCache: (any PXKit::PXNetworkingImageRequestCache)? = AutoPurgingImageCache())
+    public init(sessionManager: PXKit::PXNetworking.PXKit::SessionManager, downloadPrioritization: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::DownloadPrioritization = .fifo, maximumActiveDownloads: Swift::Int = 4, imageCache: (any PXKit::PXNetworkingImageRequestCache)? = AutoPurgingImageCache())
+    open func addAuthentication(user: Swift::String, password: Swift::String, persistence: Foundation::URLCredential.Foundation::Persistence = .forSession)
+    open func addAuthentication(usingCredential credential: Foundation::URLCredential)
     @discardableResult
-    open func download(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, receiptID: Swift.String = UUID().uuidString, filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, completion: PXKit.PXNetworking.ImageDownloader.CompletionHandler?) -> PXKit.PXNetworking.RequestReceipt?
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func download(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, receiptID: Swift::String = UUID().uuidString, filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, completion: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::CompletionHandler?) -> PXKit::PXNetworking.PXKit::RequestReceipt?
     @discardableResult
-    open func download(_ urlRequests: [any PXKit.PXNetworkingURLRequestConvertible], filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, completion: PXKit.PXNetworking.ImageDownloader.CompletionHandler? = nil) -> [PXKit.PXNetworking.RequestReceipt]
-    #endif
-    open func cancelRequest(with requestReceipt: PXKit.PXNetworking.RequestReceipt)
+    open func download(_ urlRequests: [any PXKit::PXNetworkingURLRequestConvertible], filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, completion: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::CompletionHandler? = nil) -> [PXKit::PXNetworking.PXKit::RequestReceipt]
+    open func cancelRequest(with requestReceipt: PXKit::PXNetworking.PXKit::RequestReceipt)
     @objc deinit
   }
 }
-extension Foundation.NSNotification.Name {
+extension Foundation::NSNotification.Foundation::Name {
   public struct PXNetworkingTask {
-    public static let DidResume: Foundation.Notification.Name
-    public static let DidSuspend: Foundation.Notification.Name
-    public static let DidCancel: Foundation.Notification.Name
-    public static let DidComplete: Foundation.Notification.Name
+    public static let DidResume: Foundation::Notification.Foundation::Name
+    public static let DidSuspend: Foundation::Notification.Foundation::Name
+    public static let DidCancel: Foundation::Notification.Foundation::Name
+    public static let DidComplete: Foundation::Notification.Foundation::Name
   }
 }
-extension Foundation.Notification {
+extension Foundation::Notification {
   public struct PXNetworkingKey {
-    public static let Task: Swift.String
-    public static let ResponseData: Swift.String
+    public static let Task: Swift::String
+    public static let ResponseData: Swift::String
   }
 }
-extension PXKit.Archive {
-  #if compiler(>=5.3) && $NonescapableTypes
-  final public func extract(_ entry: PXKit.Entry, to url: Foundation.URL, bufferSize: Swift.UInt32 = defaultReadChunkSize, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil) throws -> PXKit.CRC32
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  final public func extract(_ entry: PXKit.Entry, bufferSize: Swift.UInt32 = defaultReadChunkSize, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> PXKit.CRC32
-  #endif
+extension PXKit::Archive {
+  final public func extract(_ entry: PXKit::Entry, to url: Foundation::URL, bufferSize: Swift::UInt32 = defaultReadChunkSize, skipCRC32: Swift::Bool = false, progress: Foundation::Progress? = nil) throws -> PXKit::CRC32
+  final public func extract(_ entry: PXKit::Entry, bufferSize: Swift::UInt32 = defaultReadChunkSize, skipCRC32: Swift::Bool = false, progress: Foundation::Progress? = nil, consumer: PXKit::Consumer) throws -> PXKit::CRC32
 }
-extension PXKit.PXNetworking {
-  public enum AFIError : Swift.Error {
+extension PXKit::PXNetworking {
+  public enum AFIError : Swift::Error {
     case requestCancelled
     case imageSerializationFailed
-    public static func == (a: PXKit.PXNetworking.AFIError, b: PXKit.PXNetworking.AFIError) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
+    public static func == (a: PXKit::PXNetworking.PXKit::AFIError, b: PXKit::PXNetworking.PXKit::AFIError) -> Swift::Bool
+    public func hash(into hasher: inout Swift::Hasher)
+    public var hashValue: Swift::Int {
       get
     }
   }
 }
-extension PXKit.PXNetworking.AFIError {
-  public var isRequestCancelledError: Swift.Bool {
+extension PXKit::PXNetworking.PXKit::AFIError {
+  public var isRequestCancelledError: Swift::Bool {
     get
   }
-  public var isImageSerializationFailedError: Swift.Bool {
+  public var isImageSerializationFailedError: Swift::Bool {
     get
   }
 }
-extension PXKit.PXNetworking.AFIError : Foundation.LocalizedError {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var errorDescription: Swift.String? {
+extension PXKit::PXNetworking.PXKit::AFIError : Foundation::LocalizedError {
+  public var errorDescription: Swift::String? {
     get
   }
-  #endif
 }
-@objc(PXUser) public class User : ObjectiveC.NSObject {
-  @objc public var ide: Swift.String
-  @objc public var email: Swift.String?
-  @objc public var userHash: Swift.String?
-  @objc public var gender: Swift.String?
-  @objc public var lastName: Swift.String?
-  @objc public var firstName: Swift.String?
-  @objc public var signUpDateValue: ObjectiveC.NSObject?
-  @objc public var title: Swift.String?
-  @objc public var role: Swift.String?
-  @objc public var subscriptionId: Swift.String?
-  @objc public var phone: Swift.String?
-  @objc public var countryCode: Swift.String?
-  @objc public var countryName: Swift.String?
-  @objc public var stateCode: Swift.String?
-  @objc public var stateName: Swift.String?
-  @objc public var city: Swift.String?
-  @objc public var street: Swift.String?
-  @objc public var continent: Swift.String?
-  @objc public var postalCode: Swift.String?
-  @objc public var regionName: Swift.String?
-  @objc public var timeZone: Swift.String?
-  @objc public var latitude: Foundation.NSNumber?
-  @objc public var longitude: Foundation.NSNumber?
-  @objc public var organization: Swift.String?
-  @objc public var organizationEmployees: Swift.String?
-  @objc public var organizationRevenue: Swift.String?
-  @objc public var organizationIndustry: Swift.String?
-  @objc public var organizationSicCode: Swift.String?
-  @objc public var organizationDuns: Foundation.NSNumber?
-  @objc public var accountId: Swift.String?
-  @objc public var firstVisitDateValue: ObjectiveC.NSObject?
-  @objc public var score: Foundation.NSNumber?
-  @objc public var sfdcContactId: Swift.String?
-  @objc public var customAttributes: [Swift.String : Any]?
-  @objc public init(userId: Swift.String)
+@objc(PXUser) public class User : ObjectiveC::NSObject {
+  @objc public var ide: Swift::String
+  @objc public var email: Swift::String?
+  @objc public var userHash: Swift::String?
+  @objc public var gender: Swift::String?
+  @objc public var lastName: Swift::String?
+  @objc public var firstName: Swift::String?
+  @objc public var signUpDateValue: ObjectiveC::NSObject?
+  @objc public var title: Swift::String?
+  @objc public var role: Swift::String?
+  @objc public var subscriptionId: Swift::String?
+  @objc public var phone: Swift::String?
+  @objc public var countryCode: Swift::String?
+  @objc public var countryName: Swift::String?
+  @objc public var stateCode: Swift::String?
+  @objc public var stateName: Swift::String?
+  @objc public var city: Swift::String?
+  @objc public var street: Swift::String?
+  @objc public var continent: Swift::String?
+  @objc public var postalCode: Swift::String?
+  @objc public var regionName: Swift::String?
+  @objc public var timeZone: Swift::String?
+  @objc public var latitude: Foundation::NSNumber?
+  @objc public var longitude: Foundation::NSNumber?
+  @objc public var organization: Swift::String?
+  @objc public var organizationEmployees: Swift::String?
+  @objc public var organizationRevenue: Swift::String?
+  @objc public var organizationIndustry: Swift::String?
+  @objc public var organizationSicCode: Swift::String?
+  @objc public var organizationDuns: Foundation::NSNumber?
+  @objc public var accountId: Swift::String?
+  @objc public var firstVisitDateValue: ObjectiveC::NSObject?
+  @objc public var score: Foundation::NSNumber?
+  @objc public var sfdcContactId: Swift::String?
+  @objc public var customAttributes: [Swift::String : Any]?
+  @objc public init(userId: Swift::String)
   @objc deinit
 }
-public typealias ControlState = UIKit.UIControl.State
-extension UIKit.UIButton {
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public var px_af_imageDownloader: PXKit.PXNetworking.ImageDownloader? {
+public typealias ControlState = UIKit::UIControl.UIKit::State
+extension UIKit::UIButton {
+  @_Concurrency::MainActor @preconcurrency public var px_af_imageDownloader: PXKit::PXNetworking.PXKit::ImageDownloader? {
     get
     set
   }
-  #endif
-  @_Concurrency.MainActor @preconcurrency public class var px_af_sharedImageDownloader: PXKit.PXNetworking.ImageDownloader {
+  @_Concurrency::MainActor @preconcurrency public class var px_af_sharedImageDownloader: PXKit::PXNetworking.PXKit::ImageDownloader {
     get
     set
   }
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public func px_af_setImage(for state: PXKit.ControlState, url: Foundation.URL, placeholderImage: UIKit.UIImage? = nil, filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, completion: ((PXKit.PXNetworking.DataResponse<UIKit.UIImage>) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public func px_af_setImage(for state: PXKit.ControlState, urlRequest: any PXKit.PXNetworkingURLRequestConvertible, placeholderImage: UIKit.UIImage? = nil, filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, completion: ((PXKit.PXNetworking.DataResponse<UIKit.UIImage>) -> Swift.Void)? = nil)
-  #endif
-  @_Concurrency.MainActor @preconcurrency public func px_af_cancelImageRequest(for state: PXKit.ControlState)
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public func px_af_setBackgroundImage(for state: PXKit.ControlState, url: Foundation.URL, placeholderImage: UIKit.UIImage? = nil, filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, completion: ((PXKit.PXNetworking.DataResponse<UIKit.UIImage>) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public func px_af_setBackgroundImage(for state: PXKit.ControlState, urlRequest: any PXKit.PXNetworkingURLRequestConvertible, placeholderImage: UIKit.UIImage? = nil, filter: (any PXKit.PXNetworkingImageFilter)? = nil, progress: PXKit.PXNetworking.ImageDownloader.ProgressHandler? = nil, progressQueue: Dispatch.DispatchQueue = DispatchQueue.main, completion: ((PXKit.PXNetworking.DataResponse<UIKit.UIImage>) -> Swift.Void)? = nil)
-  #endif
-  @_Concurrency.MainActor @preconcurrency public func px_af_cancelBackgroundImageRequest(for state: PXKit.ControlState)
+  @_Concurrency::MainActor @preconcurrency public func px_af_setImage(for state: PXKit::ControlState, url: Foundation::URL, placeholderImage: UIKit::UIImage? = nil, filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, completion: ((PXKit::PXNetworking.PXKit::DataResponse<UIKit::UIImage>) -> Swift::Void)? = nil)
+  @_Concurrency::MainActor @preconcurrency public func px_af_setImage(for state: PXKit::ControlState, urlRequest: any PXKit::PXNetworkingURLRequestConvertible, placeholderImage: UIKit::UIImage? = nil, filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, completion: ((PXKit::PXNetworking.PXKit::DataResponse<UIKit::UIImage>) -> Swift::Void)? = nil)
+  @_Concurrency::MainActor @preconcurrency public func px_af_cancelImageRequest(for state: PXKit::ControlState)
+  @_Concurrency::MainActor @preconcurrency public func px_af_setBackgroundImage(for state: PXKit::ControlState, url: Foundation::URL, placeholderImage: UIKit::UIImage? = nil, filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, completion: ((PXKit::PXNetworking.PXKit::DataResponse<UIKit::UIImage>) -> Swift::Void)? = nil)
+  @_Concurrency::MainActor @preconcurrency public func px_af_setBackgroundImage(for state: PXKit::ControlState, urlRequest: any PXKit::PXNetworkingURLRequestConvertible, placeholderImage: UIKit::UIImage? = nil, filter: (any PXKit::PXNetworkingImageFilter)? = nil, progress: PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::ProgressHandler? = nil, progressQueue: Dispatch::DispatchQueue = DispatchQueue.main, completion: ((PXKit::PXNetworking.PXKit::DataResponse<UIKit::UIImage>) -> Swift::Void)? = nil)
+  @_Concurrency::MainActor @preconcurrency public func px_af_cancelBackgroundImageRequest(for state: PXKit::ControlState)
 }
-@objc(PXAnalyticsConfigurations) public class AnalyticsConfigurations : ObjectiveC.NSObject, @unchecked Swift.Sendable {
-  @objc public var apiKey: Swift.String
-  @objc public var crypto: (any PXKit.GPXCrypto)?
-  @objc public var connection: PXKit.Connection
-  @objc public var flushQueueSize: Swift.Int
-  @objc public var maxQueueSize: Swift.Int
-  @objc public var flushInterval: Swift.Double
-  @objc public var trackApplicationLifecycleEvents: Swift.Bool
-  @objc public var recordScreenViews: Swift.Bool
-  @objc public var enableCrashReporting: Swift.Bool
-  @objc public var application: UIKit.UIApplication
-  @objc public var currentWindow: UIKit.UIWindow?
-  @objc public var shouldTrackTapEvents: Swift.Bool
-  @objc public var reportTrackingIssues: Swift.Bool
-  @objc public var enabled: Swift.Bool
-  @objc public init(apiKey: Swift.String)
+@objc(PXAnalyticsConfigurations) public class AnalyticsConfigurations : ObjectiveC::NSObject, @unchecked Swift::Sendable {
+  @objc public var apiKey: Swift::String
+  @objc public var crypto: (any PXKit::GPXCrypto)?
+  @objc public var connection: PXKit::Connection
+  @objc public var flushQueueSize: Swift::Int
+  @objc public var maxQueueSize: Swift::Int
+  @objc public var flushInterval: Swift::Double
+  @objc public var trackApplicationLifecycleEvents: Swift::Bool
+  @objc public var recordScreenViews: Swift::Bool
+  @objc public var enableCrashReporting: Swift::Bool
+  @objc public var application: UIKit::UIApplication
+  @objc public var currentWindow: UIKit::UIWindow?
+  @objc public var shouldTrackTapEvents: Swift::Bool
+  @objc public var reportTrackingIssues: Swift::Bool
+  @objc public var enabled: Swift::Bool
+  @objc public init(apiKey: Swift::String)
   @objc deinit
 }
-public typealias CRC32 = Swift.UInt32
-public typealias Consumer = (_ data: Foundation.Data) throws -> Swift.Void
-public typealias Provider = (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data
-public let crcTable: [Swift.UInt32]
-extension Foundation.Data {
-  public func crc32(checksum: PXKit.CRC32) -> PXKit.CRC32
+public typealias CRC32 = Swift::UInt32
+public typealias Consumer = (_ data: Foundation::Data) throws -> Swift::Void
+public typealias Provider = (_ position: Swift::Int, _ size: Swift::Int) throws -> Foundation::Data
+public let crcTable: [Swift::UInt32]
+extension Foundation::Data {
+  public func crc32(checksum: PXKit::CRC32) -> PXKit::CRC32
 }
-@objc public class ScreenEvent : ObjectiveC.NSObject {
-  @objc public var screenName: Swift.String
-  @objc public var screenClass: Swift.String?
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public init(screenName: Swift.String, screenClass: Swift.String?)
-  #endif
+@objc public class ScreenEvent : ObjectiveC::NSObject {
+  @objc public var screenName: Swift::String
+  @objc public var screenClass: Swift::String?
+  @objc public init(screenName: Swift::String, screenClass: Swift::String?)
   @objc deinit
 }
-extension PXKit.PXNetworking.Request {
+extension PXKit::PXNetworking.PXKit::Request {
   public enum ValidationResult {
     case success
-    case failure(any Swift.Error)
+    case failure(any Swift::Error)
   }
 }
-extension PXKit.PXNetworking.DataRequest {
-  public typealias Validation = (Foundation.URLRequest?, Foundation.HTTPURLResponse, Foundation.Data?) -> PXKit.PXNetworking.Request.ValidationResult
+extension PXKit::PXNetworking.PXKit::DataRequest {
+  public typealias Validation = (Foundation::URLRequest?, Foundation::HTTPURLResponse, Foundation::Data?) -> PXKit::PXNetworking.PXKit::Request.PXKit::ValidationResult
   @discardableResult
-  public func validate(_ validation: @escaping PXKit.PXNetworking.DataRequest.Validation) -> Self
+  public func validate(_ validation: @escaping PXKit::PXNetworking.PXKit::DataRequest.PXKit::Validation) -> Self
   @discardableResult
-  public func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Swift.Sequence, S.Element == Swift.Int
+  public func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Swift::Sequence, S.Element == Swift::Int
   @discardableResult
-  public func validate<S>(contentType acceptableContentTypes: S) -> Self where S : Swift.Sequence, S.Element == Swift.String
-  @discardableResult
-  public func validate() -> Self
-}
-extension PXKit.PXNetworking.DownloadRequest {
-  public typealias Validation = (_ request: Foundation.URLRequest?, _ response: Foundation.HTTPURLResponse, _ temporaryURL: Foundation.URL?, _ destinationURL: Foundation.URL?) -> PXKit.PXNetworking.Request.ValidationResult
-  @discardableResult
-  public func validate(_ validation: @escaping PXKit.PXNetworking.DownloadRequest.Validation) -> Self
-  @discardableResult
-  public func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Swift.Sequence, S.Element == Swift.Int
-  @discardableResult
-  public func validate<S>(contentType acceptableContentTypes: S) -> Self where S : Swift.Sequence, S.Element == Swift.String
+  public func validate<S>(contentType acceptableContentTypes: S) -> Self where S : Swift::Sequence, S.Element == Swift::String
   @discardableResult
   public func validate() -> Self
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking.PXKit::DownloadRequest {
+  public typealias Validation = (_ request: Foundation::URLRequest?, _ response: Foundation::HTTPURLResponse, _ temporaryURL: Foundation::URL?, _ destinationURL: Foundation::URL?) -> PXKit::PXNetworking.PXKit::Request.PXKit::ValidationResult
+  @discardableResult
+  public func validate(_ validation: @escaping PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::Validation) -> Self
+  @discardableResult
+  public func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Swift::Sequence, S.Element == Swift::Int
+  @discardableResult
+  public func validate<S>(contentType acceptableContentTypes: S) -> Self where S : Swift::Sequence, S.Element == Swift::String
+  @discardableResult
+  public func validate() -> Self
+}
+extension PXKit::PXNetworking {
   public struct Timeline {
-    public let requestStartTime: CoreFoundation.CFAbsoluteTime
-    public let initialResponseTime: CoreFoundation.CFAbsoluteTime
-    public let requestCompletedTime: CoreFoundation.CFAbsoluteTime
-    public let serializationCompletedTime: CoreFoundation.CFAbsoluteTime
-    public let latency: Foundation.TimeInterval
-    public let requestDuration: Foundation.TimeInterval
-    public let serializationDuration: Foundation.TimeInterval
-    public let totalDuration: Foundation.TimeInterval
-    public init(requestStartTime: CoreFoundation.CFAbsoluteTime = 0.0, initialResponseTime: CoreFoundation.CFAbsoluteTime = 0.0, requestCompletedTime: CoreFoundation.CFAbsoluteTime = 0.0, serializationCompletedTime: CoreFoundation.CFAbsoluteTime = 0.0)
+    public let requestStartTime: CoreFoundation::CFAbsoluteTime
+    public let initialResponseTime: CoreFoundation::CFAbsoluteTime
+    public let requestCompletedTime: CoreFoundation::CFAbsoluteTime
+    public let serializationCompletedTime: CoreFoundation::CFAbsoluteTime
+    public let latency: Foundation::TimeInterval
+    public let requestDuration: Foundation::TimeInterval
+    public let serializationDuration: Foundation::TimeInterval
+    public let totalDuration: Foundation::TimeInterval
+    public init(requestStartTime: CoreFoundation::CFAbsoluteTime = 0.0, initialResponseTime: CoreFoundation::CFAbsoluteTime = 0.0, requestCompletedTime: CoreFoundation::CFAbsoluteTime = 0.0, serializationCompletedTime: CoreFoundation::CFAbsoluteTime = 0.0)
   }
 }
-extension PXKit.PXNetworking.Timeline : Swift.CustomStringConvertible {
-  public var description: Swift.String {
+extension PXKit::PXNetworking.PXKit::Timeline : Swift::CustomStringConvertible {
+  public var description: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking.Timeline : Swift.CustomDebugStringConvertible {
-  public var debugDescription: Swift.String {
+extension PXKit::PXNetworking.PXKit::Timeline : Swift::CustomDebugStringConvertible {
+  public var debugDescription: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   public struct DefaultDataResponse {
-    public let request: Foundation.URLRequest?
-    public let response: Foundation.HTTPURLResponse?
-    public let data: Foundation.Data?
-    public let error: (any Swift.Error)?
-    public let timeline: PXKit.PXNetworking.Timeline
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: (any Swift.Error)?, timeline: PXKit.PXNetworking.Timeline = Timeline(), metrics: Swift.AnyObject? = nil)
-    #endif
+    public let request: Foundation::URLRequest?
+    public let response: Foundation::HTTPURLResponse?
+    public let data: Foundation::Data?
+    public let error: (any Swift::Error)?
+    public let timeline: PXKit::PXNetworking.PXKit::Timeline
+    public init(request: Foundation::URLRequest?, response: Foundation::HTTPURLResponse?, data: Foundation::Data?, error: (any Swift::Error)?, timeline: PXKit::PXNetworking.PXKit::Timeline = Timeline(), metrics: Swift::AnyObject? = nil)
   }
   public struct DataResponse<Value> {
-    public let request: Foundation.URLRequest?
-    public let response: Foundation.HTTPURLResponse?
-    public let data: Foundation.Data?
-    public let result: PXKit.PXNetworking.Result<Value>
-    public let timeline: PXKit.PXNetworking.Timeline
-    #if compiler(>=5.3) && $NonescapableTypes
+    public let request: Foundation::URLRequest?
+    public let response: Foundation::HTTPURLResponse?
+    public let data: Foundation::Data?
+    public let result: PXKit::PXNetworking.PXKit::Result<Value>
+    public let timeline: PXKit::PXNetworking.PXKit::Timeline
     public var value: Value? {
       get
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public var error: (any Swift.Error)? {
+    public var error: (any Swift::Error)? {
       get
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, result: PXKit.PXNetworking.Result<Value>, timeline: PXKit.PXNetworking.Timeline = Timeline())
-    #endif
+    public init(request: Foundation::URLRequest?, response: Foundation::HTTPURLResponse?, data: Foundation::Data?, result: PXKit::PXNetworking.PXKit::Result<Value>, timeline: PXKit::PXNetworking.PXKit::Timeline = Timeline())
   }
 }
-extension PXKit.PXNetworking.DataResponse : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
-  public var description: Swift.String {
+extension PXKit::PXNetworking.PXKit::DataResponse : Swift::CustomStringConvertible, Swift::CustomDebugStringConvertible {
+  public var description: Swift::String {
     get
   }
-  public var debugDescription: Swift.String {
+  public var debugDescription: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking.DataResponse {
-  public func pmap<T>(_ transform: (Value) -> T) -> PXKit.PXNetworking.DataResponse<T>
-  public func flatMap<T>(_ transform: (Value) throws -> T) -> PXKit.PXNetworking.DataResponse<T>
-  public func mapError<E>(_ transform: (any Swift.Error) -> E) -> PXKit.PXNetworking.DataResponse<Value> where E : Swift.Error
-  public func flatMapError<E>(_ transform: (any Swift.Error) throws -> E) -> PXKit.PXNetworking.DataResponse<Value> where E : Swift.Error
+extension PXKit::PXNetworking.PXKit::DataResponse {
+  public func pmap<T>(_ transform: (Value) -> T) -> PXKit::PXNetworking.PXKit::DataResponse<T>
+  public func flatMap<T>(_ transform: (Value) throws -> T) -> PXKit::PXNetworking.PXKit::DataResponse<T>
+  public func mapError<E>(_ transform: (any Swift::Error) -> E) -> PXKit::PXNetworking.PXKit::DataResponse<Value> where E : Swift::Error
+  public func flatMapError<E>(_ transform: (any Swift::Error) throws -> E) -> PXKit::PXNetworking.PXKit::DataResponse<Value> where E : Swift::Error
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   public struct DefaultDownloadResponse {
-    public let request: Foundation.URLRequest?
-    public let response: Foundation.HTTPURLResponse?
-    public let temporaryURL: Foundation.URL?
-    public let destinationURL: Foundation.URL?
-    public let resumeData: Foundation.Data?
-    public let error: (any Swift.Error)?
-    public let timeline: PXKit.PXNetworking.Timeline
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, temporaryURL: Foundation.URL?, destinationURL: Foundation.URL?, resumeData: Foundation.Data?, error: (any Swift.Error)?, timeline: PXKit.PXNetworking.Timeline = Timeline(), metrics: Swift.AnyObject? = nil)
-    #endif
+    public let request: Foundation::URLRequest?
+    public let response: Foundation::HTTPURLResponse?
+    public let temporaryURL: Foundation::URL?
+    public let destinationURL: Foundation::URL?
+    public let resumeData: Foundation::Data?
+    public let error: (any Swift::Error)?
+    public let timeline: PXKit::PXNetworking.PXKit::Timeline
+    public init(request: Foundation::URLRequest?, response: Foundation::HTTPURLResponse?, temporaryURL: Foundation::URL?, destinationURL: Foundation::URL?, resumeData: Foundation::Data?, error: (any Swift::Error)?, timeline: PXKit::PXNetworking.PXKit::Timeline = Timeline(), metrics: Swift::AnyObject? = nil)
   }
   public struct DownloadResponse<Value> {
-    public let request: Foundation.URLRequest?
-    public let response: Foundation.HTTPURLResponse?
-    public let temporaryURL: Foundation.URL?
-    public let destinationURL: Foundation.URL?
-    public let resumeData: Foundation.Data?
-    public let result: PXKit.PXNetworking.Result<Value>
-    public let timeline: PXKit.PXNetworking.Timeline
-    #if compiler(>=5.3) && $NonescapableTypes
+    public let request: Foundation::URLRequest?
+    public let response: Foundation::HTTPURLResponse?
+    public let temporaryURL: Foundation::URL?
+    public let destinationURL: Foundation::URL?
+    public let resumeData: Foundation::Data?
+    public let result: PXKit::PXNetworking.PXKit::Result<Value>
+    public let timeline: PXKit::PXNetworking.PXKit::Timeline
     public var value: Value? {
       get
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public var error: (any Swift.Error)? {
+    public var error: (any Swift::Error)? {
       get
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, temporaryURL: Foundation.URL?, destinationURL: Foundation.URL?, resumeData: Foundation.Data?, result: PXKit.PXNetworking.Result<Value>, timeline: PXKit.PXNetworking.Timeline = Timeline())
-    #endif
+    public init(request: Foundation::URLRequest?, response: Foundation::HTTPURLResponse?, temporaryURL: Foundation::URL?, destinationURL: Foundation::URL?, resumeData: Foundation::Data?, result: PXKit::PXNetworking.PXKit::Result<Value>, timeline: PXKit::PXNetworking.PXKit::Timeline = Timeline())
   }
 }
-extension PXKit.PXNetworking.DownloadResponse : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
-  public var description: Swift.String {
+extension PXKit::PXNetworking.PXKit::DownloadResponse : Swift::CustomStringConvertible, Swift::CustomDebugStringConvertible {
+  public var description: Swift::String {
     get
   }
-  public var debugDescription: Swift.String {
+  public var debugDescription: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking.DownloadResponse {
-  public func map<T>(_ transform: (Value) -> T) -> PXKit.PXNetworking.DownloadResponse<T>
-  public func flatMap<T>(_ transform: (Value) throws -> T) -> PXKit.PXNetworking.DownloadResponse<T>
-  public func mapError<E>(_ transform: (any Swift.Error) -> E) -> PXKit.PXNetworking.DownloadResponse<Value> where E : Swift.Error
-  public func flatMapError<E>(_ transform: (any Swift.Error) throws -> E) -> PXKit.PXNetworking.DownloadResponse<Value> where E : Swift.Error
+extension PXKit::PXNetworking.PXKit::DownloadResponse {
+  public func map<T>(_ transform: (Value) -> T) -> PXKit::PXNetworking.PXKit::DownloadResponse<T>
+  public func flatMap<T>(_ transform: (Value) throws -> T) -> PXKit::PXNetworking.PXKit::DownloadResponse<T>
+  public func mapError<E>(_ transform: (any Swift::Error) -> E) -> PXKit::PXNetworking.PXKit::DownloadResponse<Value> where E : Swift::Error
+  public func flatMapError<E>(_ transform: (any Swift::Error) throws -> E) -> PXKit::PXNetworking.PXKit::DownloadResponse<Value> where E : Swift::Error
 }
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
-extension PXKit.PXNetworking.DefaultDataResponse {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var metrics: Foundation.URLSessionTaskMetrics? {
+extension PXKit::PXNetworking.PXKit::DefaultDataResponse {
+  public var metrics: Foundation::URLSessionTaskMetrics? {
     get
   }
-  #endif
 }
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
-extension PXKit.PXNetworking.DataResponse {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var metrics: Foundation.URLSessionTaskMetrics? {
+extension PXKit::PXNetworking.PXKit::DataResponse {
+  public var metrics: Foundation::URLSessionTaskMetrics? {
     get
   }
-  #endif
 }
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
-extension PXKit.PXNetworking.DefaultDownloadResponse {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var metrics: Foundation.URLSessionTaskMetrics? {
+extension PXKit::PXNetworking.PXKit::DefaultDownloadResponse {
+  public var metrics: Foundation::URLSessionTaskMetrics? {
     get
   }
-  #endif
 }
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
-extension PXKit.PXNetworking.DownloadResponse {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var metrics: Foundation.URLSessionTaskMetrics? {
+extension PXKit::PXNetworking.PXKit::DownloadResponse {
+  public var metrics: Foundation::URLSessionTaskMetrics? {
     get
   }
-  #endif
 }
-extension UIKit.UIColor {
-  #if compiler(>=5.3) && $NonescapableTypes
-  convenience public init?(hex: Swift.String, a: CoreFoundation.CGFloat)
-  #endif
+extension UIKit::UIColor {
+  convenience public init?(hex: Swift::String, a: CoreFoundation::CGFloat)
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   open class MultipartFormData {
-    open var contentType: Swift.String {
+    open var contentType: Swift::String {
       get
       set
     }
-    public var contentLength: Swift.UInt64 {
+    public var contentLength: Swift::UInt64 {
       get
     }
-    public var boundary: Swift.String
+    public var boundary: Swift::String
     public init()
-    public func append(_ data: Foundation.Data, withName name: Swift.String)
-    public func append(_ data: Foundation.Data, withName name: Swift.String, mimeType: Swift.String)
-    public func append(_ data: Foundation.Data, withName name: Swift.String, fileName: Swift.String, mimeType: Swift.String)
-    public func append(_ fileURL: Foundation.URL, withName name: Swift.String)
-    public func append(_ fileURL: Foundation.URL, withName name: Swift.String, fileName: Swift.String, mimeType: Swift.String)
-    public func append(_ stream: Foundation.InputStream, withLength length: Swift.UInt64, name: Swift.String, fileName: Swift.String, mimeType: Swift.String)
-    public func append(_ stream: Foundation.InputStream, withLength length: Swift.UInt64, headers: PXKit.PXNetworkingHTTPHeaders)
-    public func encode() throws -> Foundation.Data
-    public func writeEncodedData(to fileURL: Foundation.URL) throws
+    public func append(_ data: Foundation::Data, withName name: Swift::String)
+    public func append(_ data: Foundation::Data, withName name: Swift::String, mimeType: Swift::String)
+    public func append(_ data: Foundation::Data, withName name: Swift::String, fileName: Swift::String, mimeType: Swift::String)
+    public func append(_ fileURL: Foundation::URL, withName name: Swift::String)
+    public func append(_ fileURL: Foundation::URL, withName name: Swift::String, fileName: Swift::String, mimeType: Swift::String)
+    public func append(_ stream: Foundation::InputStream, withLength length: Swift::UInt64, name: Swift::String, fileName: Swift::String, mimeType: Swift::String)
+    public func append(_ stream: Foundation::InputStream, withLength length: Swift::UInt64, headers: PXKit::PXNetworkingHTTPHeaders)
+    public func encode() throws -> Foundation::Data
+    public func writeEncodedData(to fileURL: Foundation::URL) throws
     @objc deinit
   }
 }
-public typealias GainsightPXErrorBlock = (Swift.String, [Swift.String : Any]?, (any Swift.Error)?) -> Swift.Void
-extension Foundation.FileManager {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public func zipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, shouldKeepParent: Swift.Bool = true, compressionMethod: PXKit.CompressionMethod = .none, progress: Foundation.Progress? = nil) throws
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  public func unzipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, preferredEncoding: Swift.String.Encoding? = nil) throws
-  #endif
+public typealias GainsightPXErrorBlock = (Swift::String, [Swift::String : Any]?, (any Swift::Error)?) -> Swift::Void
+extension Foundation::FileManager {
+  public func zipItem(at sourceURL: Foundation::URL, to destinationURL: Foundation::URL, shouldKeepParent: Swift::Bool = true, compressionMethod: PXKit::CompressionMethod = .none, progress: Foundation::Progress? = nil) throws
+  public func unzipItem(at sourceURL: Foundation::URL, to destinationURL: Foundation::URL, skipCRC32: Swift::Bool = false, progress: Foundation::Progress? = nil, preferredEncoding: Swift::String.Foundation::Encoding? = nil) throws
 }
-extension Foundation.URL {
-  public func isContained(in parentDirectoryURL: Foundation.URL) -> Swift.Bool
+extension Foundation::URL {
+  public func isContained(in parentDirectoryURL: Foundation::URL) -> Swift::Bool
 }
-public typealias PXEngagementCallBack = (PXKit.EngagementCallBackModel?, (any Swift.Error)?) -> Swift.Bool
-@objc(PXEngagementCallBackModel) public class EngagementCallBackModel : ObjectiveC.NSObject {
-  @objc final public let actionText: Swift.String
-  @objc final public let actionData: Swift.String
-  @objc final public let actionsType: Swift.String
-  @objc final public let engagementName: Swift.String
-  @objc final public let scope: PXKit.ScreenEvent?
-  @objc final public let engagementId: Swift.String
-  @objc final public let params: [Swift.String : Any]
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func toJSON() -> [Swift.String : Any]?
-  #endif
+public typealias PXEngagementCallBack = (PXKit::EngagementCallBackModel?, (any Swift::Error)?) -> Swift::Bool
+@objc(PXEngagementCallBackModel) public class EngagementCallBackModel : ObjectiveC::NSObject {
+  @objc final public let actionText: Swift::String
+  @objc final public let actionData: Swift::String
+  @objc final public let actionsType: Swift::String
+  @objc final public let engagementName: Swift::String
+  @objc final public let scope: PXKit::ScreenEvent?
+  @objc final public let engagementId: Swift::String
+  @objc final public let params: [Swift::String : Any]
+  @objc public func toJSON() -> [Swift::String : Any]?
   @objc deinit
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   public enum Result<Value> {
     case success(Value)
-    case failure(any Swift.Error)
-    public var isSuccess: Swift.Bool {
+    case failure(any Swift::Error)
+    public var isSuccess: Swift::Bool {
       get
     }
-    public var isFailure: Swift.Bool {
+    public var isFailure: Swift::Bool {
       get
     }
-    #if compiler(>=5.3) && $NonescapableTypes
     public var value: Value? {
       get
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public var error: (any Swift.Error)? {
+    public var error: (any Swift::Error)? {
       get
     }
-    #endif
   }
 }
-extension PXKit.PXNetworking.Result : Swift.CustomStringConvertible {
-  public var description: Swift.String {
+extension PXKit::PXNetworking.PXKit::Result : Swift::CustomStringConvertible {
+  public var description: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking.Result : Swift.CustomDebugStringConvertible {
-  public var debugDescription: Swift.String {
+extension PXKit::PXNetworking.PXKit::Result : Swift::CustomDebugStringConvertible {
+  public var debugDescription: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking.Result {
+extension PXKit::PXNetworking.PXKit::Result {
   public init(value: () throws -> Value)
   public func unwrap() throws -> Value
-  public func map<T>(_ transform: (Value) -> T) -> PXKit.PXNetworking.Result<T>
-  public func flatMap<T>(_ transform: (Value) throws -> T) -> PXKit.PXNetworking.Result<T>
-  public func mapError<T>(_ transform: (any Swift.Error) -> T) -> PXKit.PXNetworking.Result<Value> where T : Swift.Error
-  public func flatMapError<T>(_ transform: (any Swift.Error) throws -> T) -> PXKit.PXNetworking.Result<Value> where T : Swift.Error
+  public func map<T>(_ transform: (Value) -> T) -> PXKit::PXNetworking.PXKit::Result<T>
+  public func flatMap<T>(_ transform: (Value) throws -> T) -> PXKit::PXNetworking.PXKit::Result<T>
+  public func mapError<T>(_ transform: (any Swift::Error) -> T) -> PXKit::PXNetworking.PXKit::Result<Value> where T : Swift::Error
+  public func flatMapError<T>(_ transform: (any Swift::Error) throws -> T) -> PXKit::PXNetworking.PXKit::Result<Value> where T : Swift::Error
   @discardableResult
-  public func withValue(_ closure: (Value) throws -> Swift.Void) rethrows -> PXKit.PXNetworking.Result<Value>
+  public func withValue(_ closure: (Value) throws -> Swift::Void) rethrows -> PXKit::PXNetworking.PXKit::Result<Value>
   @discardableResult
-  public func withError(_ closure: (any Swift.Error) throws -> Swift.Void) rethrows -> PXKit.PXNetworking.Result<Value>
+  public func withError(_ closure: (any Swift::Error) throws -> Swift::Void) rethrows -> PXKit::PXNetworking.PXKit::Result<Value>
   @discardableResult
-  public func ifSuccess(_ closure: () throws -> Swift.Void) rethrows -> PXKit.PXNetworking.Result<Value>
+  public func ifSuccess(_ closure: () throws -> Swift::Void) rethrows -> PXKit::PXNetworking.PXKit::Result<Value>
   @discardableResult
-  public func ifFailure(_ closure: () throws -> Swift.Void) rethrows -> PXKit.PXNetworking.Result<Value>
+  public func ifFailure(_ closure: () throws -> Swift::Void) rethrows -> PXKit::PXNetworking.PXKit::Result<Value>
 }
-extension PXKit.PXNetworking {
-  open class SessionManager : @unchecked Swift.Sendable {
+extension PXKit::PXNetworking {
+  open class SessionManager : @unchecked Swift::Sendable {
     public enum MultipartFormDataEncodingResult {
-      case success(request: PXKit.PXNetworking.UploadRequest, streamingFromDisk: Swift.Bool, streamFileURL: Foundation.URL?)
-      case failure(any Swift.Error)
+      case success(request: PXKit::PXNetworking.PXKit::UploadRequest, streamingFromDisk: Swift::Bool, streamFileURL: Foundation::URL?)
+      case failure(any Swift::Error)
     }
-    public static let `default`: PXKit.PXNetworking.SessionManager
-    public static let defaultHTTPHeaders: PXKit.PXNetworkingHTTPHeaders
-    public static let multipartFormDataEncodingMemoryThreshold: Swift.UInt64
-    final public let session: Foundation.URLSession
-    final public let delegate: PXKit.PXNetworking.SessionDelegate
-    open var startRequestsImmediately: Swift.Bool
-    open var adapter: (any PXKit.PXNetworkingRequestAdapter)?
-    #if compiler(>=5.3) && $NonescapableTypes
-    open var retrier: (any PXKit.PXNetworkingRequestRetrier)? {
+    public static let `default`: PXKit::PXNetworking.PXKit::SessionManager
+    public static let defaultHTTPHeaders: PXKit::PXNetworkingHTTPHeaders
+    public static let multipartFormDataEncodingMemoryThreshold: Swift::UInt64
+    final public let session: Foundation::URLSession
+    final public let delegate: PXKit::PXNetworking.PXKit::SessionDelegate
+    open var startRequestsImmediately: Swift::Bool
+    open var adapter: (any PXKit::PXNetworkingRequestAdapter)?
+    open var retrier: (any PXKit::PXNetworkingRequestRetrier)? {
       get
       set
     }
-    #endif
-    open var backgroundCompletionHandler: (() -> Swift.Void)?
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init(configuration: Foundation.URLSessionConfiguration = URLSessionConfiguration.default, delegate: PXKit.PXNetworking.SessionDelegate = SessionDelegate(), serverTrustPolicyManager: PXKit.PXNetworking.ServerTrustPolicyManager? = nil)
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init?(session: Foundation.URLSession, delegate: PXKit.PXNetworking.SessionDelegate, serverTrustPolicyManager: PXKit.PXNetworking.ServerTrustPolicyManager? = nil)
-    #endif
+    open var backgroundCompletionHandler: (() -> Swift::Void)?
+    public init(configuration: Foundation::URLSessionConfiguration = URLSessionConfiguration.default, delegate: PXKit::PXNetworking.PXKit::SessionDelegate = SessionDelegate(), serverTrustPolicyManager: PXKit::PXNetworking.PXKit::ServerTrustPolicyManager? = nil)
+    public init?(session: Foundation::URLSession, delegate: PXKit::PXNetworking.PXKit::SessionDelegate, serverTrustPolicyManager: PXKit::PXNetworking.PXKit::ServerTrustPolicyManager? = nil)
     @objc deinit
-    #if compiler(>=5.3) && $NonescapableTypes
     @discardableResult
-    open func request(_ url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .get, parameters: PXKit.PXNetworkingParameters? = nil, encoding: any PXKit.PXNetworkingParameterEncoding = URLEncoding.default, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.DataRequest
-    #endif
+    open func request(_ url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .get, parameters: PXKit::PXNetworkingParameters? = nil, encoding: any PXKit::PXNetworkingParameterEncoding = URLEncoding.default, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::DataRequest
     @discardableResult
-    open func request(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.DataRequest
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func request(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::DataRequest
     @discardableResult
-    open func download(_ url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .get, parameters: PXKit.PXNetworkingParameters? = nil, encoding: any PXKit.PXNetworkingParameterEncoding = URLEncoding.default, headers: PXKit.PXNetworkingHTTPHeaders? = nil, to destination: PXKit.PXNetworking.DownloadRequest.DownloadFileDestination? = nil) -> PXKit.PXNetworking.DownloadRequest
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func download(_ url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .get, parameters: PXKit::PXNetworkingParameters? = nil, encoding: any PXKit::PXNetworkingParameterEncoding = URLEncoding.default, headers: PXKit::PXNetworkingHTTPHeaders? = nil, to destination: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadFileDestination? = nil) -> PXKit::PXNetworking.PXKit::DownloadRequest
     @discardableResult
-    open func download(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, to destination: PXKit.PXNetworking.DownloadRequest.DownloadFileDestination? = nil) -> PXKit.PXNetworking.DownloadRequest
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func download(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, to destination: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadFileDestination? = nil) -> PXKit::PXNetworking.PXKit::DownloadRequest
     @discardableResult
-    open func download(resumingWith resumeData: Foundation.Data, to destination: PXKit.PXNetworking.DownloadRequest.DownloadFileDestination? = nil) -> PXKit.PXNetworking.DownloadRequest
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func download(resumingWith resumeData: Foundation::Data, to destination: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadFileDestination? = nil) -> PXKit::PXNetworking.PXKit::DownloadRequest
     @discardableResult
-    open func upload(_ fileURL: Foundation.URL, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.UploadRequest
-    #endif
+    open func upload(_ fileURL: Foundation::URL, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::UploadRequest
     @discardableResult
-    open func upload(_ fileURL: Foundation.URL, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.UploadRequest
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func upload(_ fileURL: Foundation::URL, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::UploadRequest
     @discardableResult
-    open func upload(_ data: Foundation.Data, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.UploadRequest
-    #endif
+    open func upload(_ data: Foundation::Data, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::UploadRequest
     @discardableResult
-    open func upload(_ data: Foundation.Data, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.UploadRequest
-    #if compiler(>=5.3) && $NonescapableTypes
+    open func upload(_ data: Foundation::Data, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::UploadRequest
     @discardableResult
-    open func upload(_ stream: Foundation.InputStream, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil) -> PXKit.PXNetworking.UploadRequest
-    #endif
+    open func upload(_ stream: Foundation::InputStream, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil) -> PXKit::PXNetworking.PXKit::UploadRequest
     @discardableResult
-    open func upload(_ stream: Foundation.InputStream, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible) -> PXKit.PXNetworking.UploadRequest
-    #if compiler(>=5.3) && $NonescapableTypes
-    open func upload(multipartFormData: @escaping (PXKit.PXNetworking.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, to url: any PXKit.PXNetworkingURLConvertible, method: PXKit.PXNetworking.HTTPMethod = .post, headers: PXKit.PXNetworkingHTTPHeaders? = nil, queue: Dispatch.DispatchQueue? = nil, encodingCompletion: ((PXKit.PXNetworking.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    open func upload(multipartFormData: @escaping (PXKit.PXNetworking.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, with urlRequest: any PXKit.PXNetworkingURLRequestConvertible, queue: Dispatch.DispatchQueue? = nil, encodingCompletion: ((PXKit.PXNetworking.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
-    #endif
+    open func upload(_ stream: Foundation::InputStream, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible) -> PXKit::PXNetworking.PXKit::UploadRequest
+    open func upload(multipartFormData: @escaping (PXKit::PXNetworking.PXKit::MultipartFormData) -> Swift::Void, usingThreshold encodingMemoryThreshold: Swift::UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, to url: any PXKit::PXNetworkingURLConvertible, method: PXKit::PXNetworking.PXKit::HTTPMethod = .post, headers: PXKit::PXNetworkingHTTPHeaders? = nil, queue: Dispatch::DispatchQueue? = nil, encodingCompletion: ((PXKit::PXNetworking.PXKit::SessionManager.PXKit::MultipartFormDataEncodingResult) -> Swift::Void)?)
+    open func upload(multipartFormData: @escaping (PXKit::PXNetworking.PXKit::MultipartFormData) -> Swift::Void, usingThreshold encodingMemoryThreshold: Swift::UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, with urlRequest: any PXKit::PXNetworkingURLRequestConvertible, queue: Dispatch::DispatchQueue? = nil, encodingCompletion: ((PXKit::PXNetworking.PXKit::SessionManager.PXKit::MultipartFormDataEncodingResult) -> Swift::Void)?)
     @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
     @discardableResult
-    open func stream(withHostName hostName: Swift.String, port: Swift.Int) -> PXKit.PXNetworking.StreamRequest
+    open func stream(withHostName hostName: Swift::String, port: Swift::Int) -> PXKit::PXNetworking.PXKit::StreamRequest
     @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
     @discardableResult
-    open func stream(with netService: Foundation.NetService) -> PXKit.PXNetworking.StreamRequest
+    open func stream(with netService: Foundation::NetService) -> PXKit::PXNetworking.PXKit::StreamRequest
   }
 }
-@objc public enum PXHost : Swift.Int {
+@objc public enum PXHost : Swift::Int {
   case us
   case eu
   case us2
-  #if compiler(>=5.3) && $NonescapableTypes
-  public init?(rawValue: Swift.Int)
-  #endif
-  public typealias RawValue = Swift.Int
-  public var rawValue: Swift.Int {
+  public init?(rawValue: Swift::Int)
+  public typealias RawValue = Swift::Int
+  public var rawValue: Swift::Int {
     get
   }
 }
-@objc(PXConnection) public class Connection : ObjectiveC.NSObject {
-  public var connectionMode: PXKit.ConnectionMode {
+@objc(PXConnection) public class Connection : ObjectiveC::NSObject {
+  public var connectionMode: PXKit::ConnectionMode {
     get
     set
   }
-  @objc public var host: Swift.String {
+  @objc public var host: Swift::String {
     get
   }
-  @objc public var timeoutIntervalForRequest: Swift.Double
-  @objc public var timeoutIntervalForResource: Swift.Double
-  @objc public init(customHost: Swift.String)
-  @objc public init(host: PXKit.PXHost)
+  @objc public var timeoutIntervalForRequest: Swift::Double
+  @objc public var timeoutIntervalForResource: Swift::Double
+  @objc public init(customHost: Swift::String)
+  @objc public init(host: PXKit::PXHost)
   @objc override dynamic public init()
-  public init(connectionMode: PXKit.ConnectionMode = .us)
+  public init(connectionMode: PXKit::ConnectionMode = .us)
   @objc deinit
 }
-extension PXKit.PXNetworking.DataRequest {
-  public class func addAcceptableImageContentTypes(_ contentTypes: Swift.Set<Swift.String>)
-  public class func imageResponseSerializer(imageScale: CoreFoundation.CGFloat = PXNetworking.DataRequest.imageScale, inflateResponseImage: Swift.Bool = true) -> PXKit.PXNetworking.DataResponseSerializer<PXKit.PXNetworkingImage>
-  #if compiler(>=5.3) && $NonescapableTypes
+extension PXKit::PXNetworking.PXKit::DataRequest {
+  public class func addAcceptableImageContentTypes(_ contentTypes: Swift::Set<Swift::String>)
+  public class func imageResponseSerializer(imageScale: CoreFoundation::CGFloat = PXNetworking.DataRequest.imageScale, inflateResponseImage: Swift::Bool = true) -> PXKit::PXNetworking.PXKit::DataResponseSerializer<PXKit::PXNetworkingImage>
   @discardableResult
-  public func responseImage(imageScale: CoreFoundation.CGFloat = PXNetworking.DataRequest.imageScale, inflateResponseImage: Swift.Bool = true, queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (PXKit.PXNetworking.DataResponse<PXKit.PXNetworkingImage>) -> Swift.Void) -> Self
-  #endif
+  public func responseImage(imageScale: CoreFoundation::CGFloat = PXNetworking.DataRequest.imageScale, inflateResponseImage: Swift::Bool = true, queue: Dispatch::DispatchQueue? = nil, completionHandler: @escaping (PXKit::PXNetworking.PXKit::DataResponse<PXKit::PXNetworkingImage>) -> Swift::Void) -> Self
   @discardableResult
-  public func streamImage(imageScale: CoreFoundation.CGFloat = PXNetworking.DataRequest.imageScale, inflateResponseImage: Swift.Bool = true, completionHandler: @escaping (PXKit.PXNetworkingImage) -> Swift.Void) -> Self
-  public class var imageScale: CoreFoundation.CGFloat {
+  public func streamImage(imageScale: CoreFoundation::CGFloat = PXNetworking.DataRequest.imageScale, inflateResponseImage: Swift::Bool = true, completionHandler: @escaping (PXKit::PXNetworkingImage) -> Swift::Void) -> Self
+  public class var imageScale: CoreFoundation::CGFloat {
     get
   }
-  #if compiler(>=5.3) && $NonescapableTypes
-  public class func validateContentType(for request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?) throws
-  #endif
+  public class func validateContentType(for request: Foundation::URLRequest?, response: Foundation::HTTPURLResponse?) throws
 }
-extension PXKit.PXNetworking {
-  public enum HTTPMethod : Swift.String {
+extension PXKit::PXNetworking {
+  public enum HTTPMethod : Swift::String {
     case options
     case get
     case head
@@ -1613,136 +1323,116 @@ extension PXKit.PXNetworking {
     case delete
     case trace
     case connect
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init?(rawValue: Swift.String)
-    #endif
-    public typealias RawValue = Swift.String
-    public var rawValue: Swift.String {
+    public init?(rawValue: Swift::String)
+    public typealias RawValue = Swift::String
+    public var rawValue: Swift::String {
       get
     }
   }
 }
-public typealias PXNetworkingParameters = [Swift.String : Any]
+public typealias PXNetworkingParameters = [Swift::String : Any]
 public protocol PXNetworkingParameterEncoding {
-  #if compiler(>=5.3) && $NonescapableTypes
-  func px_encode(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, with parameters: PXKit.PXNetworkingParameters?) throws -> Foundation.URLRequest
-  #endif
+  func px_encode(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, with parameters: PXKit::PXNetworkingParameters?) throws -> Foundation::URLRequest
 }
-extension PXKit.PXNetworking {
-  public struct URLEncoding : PXKit.PXNetworkingParameterEncoding {
+extension PXKit::PXNetworking {
+  public struct URLEncoding : PXKit::PXNetworkingParameterEncoding {
     public enum Destination {
       case methodDependent, queryString, httpBody
-      public static func == (a: PXKit.PXNetworking.URLEncoding.Destination, b: PXKit.PXNetworking.URLEncoding.Destination) -> Swift.Bool
-      public func hash(into hasher: inout Swift.Hasher)
-      public var hashValue: Swift.Int {
+      public static func == (a: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::Destination, b: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::Destination) -> Swift::Bool
+      public func hash(into hasher: inout Swift::Hasher)
+      public var hashValue: Swift::Int {
         get
       }
     }
     public enum ArrayEncoding {
       case brackets, noBrackets
-      public static func == (a: PXKit.PXNetworking.URLEncoding.ArrayEncoding, b: PXKit.PXNetworking.URLEncoding.ArrayEncoding) -> Swift.Bool
-      public func hash(into hasher: inout Swift.Hasher)
-      public var hashValue: Swift.Int {
+      public static func == (a: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::ArrayEncoding, b: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::ArrayEncoding) -> Swift::Bool
+      public func hash(into hasher: inout Swift::Hasher)
+      public var hashValue: Swift::Int {
         get
       }
     }
     public enum BoolEncoding {
       case numeric, literal
-      public static func == (a: PXKit.PXNetworking.URLEncoding.BoolEncoding, b: PXKit.PXNetworking.URLEncoding.BoolEncoding) -> Swift.Bool
-      public func hash(into hasher: inout Swift.Hasher)
-      public var hashValue: Swift.Int {
+      public static func == (a: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::BoolEncoding, b: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::BoolEncoding) -> Swift::Bool
+      public func hash(into hasher: inout Swift::Hasher)
+      public var hashValue: Swift::Int {
         get
       }
     }
-    public static var `default`: PXKit.PXNetworking.URLEncoding {
+    public static var `default`: PXKit::PXNetworking.PXKit::URLEncoding {
       get
     }
-    public static var methodDependent: PXKit.PXNetworking.URLEncoding {
+    public static var methodDependent: PXKit::PXNetworking.PXKit::URLEncoding {
       get
     }
-    public static var queryString: PXKit.PXNetworking.URLEncoding {
+    public static var queryString: PXKit::PXNetworking.PXKit::URLEncoding {
       get
     }
-    public static var httpBody: PXKit.PXNetworking.URLEncoding {
+    public static var httpBody: PXKit::PXNetworking.PXKit::URLEncoding {
       get
     }
-    public let destination: PXKit.PXNetworking.URLEncoding.Destination
-    public let arrayEncoding: PXKit.PXNetworking.URLEncoding.ArrayEncoding
-    public let boolEncoding: PXKit.PXNetworking.URLEncoding.BoolEncoding
-    public init(destination: PXKit.PXNetworking.URLEncoding.Destination = .methodDependent, arrayEncoding: PXKit.PXNetworking.URLEncoding.ArrayEncoding = .brackets, boolEncoding: PXKit.PXNetworking.URLEncoding.BoolEncoding = .numeric)
-    #if compiler(>=5.3) && $NonescapableTypes
-    public func px_encode(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, with parameters: PXKit.PXNetworkingParameters?) throws -> Foundation.URLRequest
-    #endif
-    public func queryComponents(fromKey key: Swift.String, value: Any) -> [(Swift.String, Swift.String)]
-    public func escape(_ string: Swift.String) -> Swift.String
+    public let destination: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::Destination
+    public let arrayEncoding: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::ArrayEncoding
+    public let boolEncoding: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::BoolEncoding
+    public init(destination: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::Destination = .methodDependent, arrayEncoding: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::ArrayEncoding = .brackets, boolEncoding: PXKit::PXNetworking.PXKit::URLEncoding.PXKit::BoolEncoding = .numeric)
+    public func px_encode(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, with parameters: PXKit::PXNetworkingParameters?) throws -> Foundation::URLRequest
+    public func queryComponents(fromKey key: Swift::String, value: Any) -> [(Swift::String, Swift::String)]
+    public func escape(_ string: Swift::String) -> Swift::String
   }
-  public struct JSONEncoding : PXKit.PXNetworkingParameterEncoding {
-    public static var `default`: PXKit.PXNetworking.JSONEncoding {
+  public struct JSONEncoding : PXKit::PXNetworkingParameterEncoding {
+    public static var `default`: PXKit::PXNetworking.PXKit::JSONEncoding {
       get
     }
-    public static var prettyPrinted: PXKit.PXNetworking.JSONEncoding {
+    public static var prettyPrinted: PXKit::PXNetworking.PXKit::JSONEncoding {
       get
     }
-    public let options: Foundation.JSONSerialization.WritingOptions
-    public init(options: Foundation.JSONSerialization.WritingOptions = [])
-    #if compiler(>=5.3) && $NonescapableTypes
-    public func px_encode(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, with parameters: PXKit.PXNetworkingParameters?) throws -> Foundation.URLRequest
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public func px_encode(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, withJSONObject jsonObject: Any? = nil) throws -> Foundation.URLRequest
-    #endif
+    public let options: Foundation::JSONSerialization.Foundation::WritingOptions
+    public init(options: Foundation::JSONSerialization.Foundation::WritingOptions = [])
+    public func px_encode(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, with parameters: PXKit::PXNetworkingParameters?) throws -> Foundation::URLRequest
+    public func px_encode(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, withJSONObject jsonObject: Any? = nil) throws -> Foundation::URLRequest
   }
-  public struct PropertyListEncoding : PXKit.PXNetworkingParameterEncoding {
-    public static var `default`: PXKit.PXNetworking.PropertyListEncoding {
+  public struct PropertyListEncoding : PXKit::PXNetworkingParameterEncoding {
+    public static var `default`: PXKit::PXNetworking.PXKit::PropertyListEncoding {
       get
     }
-    public static var xml: PXKit.PXNetworking.PropertyListEncoding {
+    public static var xml: PXKit::PXNetworking.PXKit::PropertyListEncoding {
       get
     }
-    public static var binary: PXKit.PXNetworking.PropertyListEncoding {
+    public static var binary: PXKit::PXNetworking.PXKit::PropertyListEncoding {
       get
     }
-    public let format: Foundation.PropertyListSerialization.PropertyListFormat
-    public let options: Foundation.PropertyListSerialization.WriteOptions
-    public init(format: Foundation.PropertyListSerialization.PropertyListFormat = .xml, options: Foundation.PropertyListSerialization.WriteOptions = 0)
-    #if compiler(>=5.3) && $NonescapableTypes
-    public func px_encode(_ urlRequest: any PXKit.PXNetworkingURLRequestConvertible, with parameters: PXKit.PXNetworkingParameters?) throws -> Foundation.URLRequest
-    #endif
+    public let format: Foundation::PropertyListSerialization.Foundation::PropertyListFormat
+    public let options: Foundation::PropertyListSerialization.Foundation::WriteOptions
+    public init(format: Foundation::PropertyListSerialization.Foundation::PropertyListFormat = .xml, options: Foundation::PropertyListSerialization.Foundation::WriteOptions = 0)
+    public func px_encode(_ urlRequest: any PXKit::PXNetworkingURLRequestConvertible, with parameters: PXKit::PXNetworkingParameters?) throws -> Foundation::URLRequest
   }
 }
 @objc public protocol TreeBuilding {
-  @objc func build() -> [Swift.String : Any]
+  @objc func build() -> [Swift::String : Any]
 }
 @objc public protocol UIMapperConsuming {
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc func getViewPosition(builder: any PXKit.TreeBuilding, completion: @escaping ([CoreFoundation.CGRect]?) -> Swift.Void)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc func getViewAtPosition(screenPosition: CoreFoundation.CGPoint, completion: @escaping ((any PXKit.TreeBuilding)?) -> Swift.Void)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc func createDOMStructure(completion: @escaping ((any PXKit.TreeBuilding)?) -> Swift.Void)
-  #endif
-  @objc func getFilterClass() -> Swift.String
-  @objc var isCrossPlatform: Swift.Bool { get }
+  @objc func getViewPosition(builder: any PXKit::TreeBuilding, completion: @escaping ([CoreFoundation::CGRect]?) -> Swift::Void)
+  @objc func getViewAtPosition(screenPosition: CoreFoundation::CGPoint, completion: @escaping ((any PXKit::TreeBuilding)?) -> Swift::Void)
+  @objc func createDOMStructure(completion: @escaping ((any PXKit::TreeBuilding)?) -> Swift::Void)
+  @objc func getFilterClass() -> Swift::String
+  @objc var isCrossPlatform: Swift::Bool { get }
 }
-public let defaultReadChunkSize: Swift.UInt32
-public let defaultWriteChunkSize: Swift.UInt32
-public let defaultFilePermissions: Swift.UInt16
-public let defaultDirectoryPermissions: Swift.UInt16
-public enum CompressionMethod : Swift.UInt16 {
+public let defaultReadChunkSize: Swift::UInt32
+public let defaultWriteChunkSize: Swift::UInt32
+public let defaultFilePermissions: Swift::UInt16
+public let defaultDirectoryPermissions: Swift::UInt16
+public enum CompressionMethod : Swift::UInt16 {
   case none
   case deflate
-  #if compiler(>=5.3) && $NonescapableTypes
-  public init?(rawValue: Swift.UInt16)
-  #endif
-  public typealias RawValue = Swift.UInt16
-  public var rawValue: Swift.UInt16 {
+  public init?(rawValue: Swift::UInt16)
+  public typealias RawValue = Swift::UInt16
+  public var rawValue: Swift::UInt16 {
     get
   }
 }
-final public class Archive : Swift.Sequence {
-  public enum ArchiveError : Swift.Error {
+final public class Archive : Swift::Sequence {
+  public enum ArchiveError : Swift::Error {
     case unreadableArchive
     case unwritableArchive
     case invalidEntryPath
@@ -1750,195 +1440,171 @@ final public class Archive : Swift.Sequence {
     case invalidStartOfCentralDirectoryOffset
     case missingEndOfCentralDirectoryRecord
     case cancelledOperation
-    public static func == (a: PXKit.Archive.ArchiveError, b: PXKit.Archive.ArchiveError) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
+    public static func == (a: PXKit::Archive.PXKit::ArchiveError, b: PXKit::Archive.PXKit::ArchiveError) -> Swift::Bool
+    public func hash(into hasher: inout Swift::Hasher)
+    public var hashValue: Swift::Int {
       get
     }
   }
-  public enum AccessMode : Swift.UInt {
+  public enum AccessMode : Swift::UInt {
     case create
     case read
     case update
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init?(rawValue: Swift.UInt)
-    #endif
-    public typealias RawValue = Swift.UInt
-    public var rawValue: Swift.UInt {
+    public init?(rawValue: Swift::UInt)
+    public typealias RawValue = Swift::UInt
+    public var rawValue: Swift::UInt {
       get
     }
   }
-  final public let url: Foundation.URL
-  final public let accessMode: PXKit.Archive.AccessMode
-  #if compiler(>=5.3) && $NonescapableTypes
-  public init?(url: Foundation.URL, accessMode mode: PXKit.Archive.AccessMode, preferredEncoding: Swift.String.Encoding? = nil)
-  #endif
+  final public let url: Foundation::URL
+  final public let accessMode: PXKit::Archive.PXKit::AccessMode
+  public init?(url: Foundation::URL, accessMode mode: PXKit::Archive.PXKit::AccessMode, preferredEncoding: Swift::String.Foundation::Encoding? = nil)
   @objc deinit
-  final public func makeIterator() -> Swift.AnyIterator<PXKit.Entry>
-  #if compiler(>=5.3) && $NonescapableTypes
-  final public subscript(path: Swift.String) -> PXKit.Entry? {
+  final public func makeIterator() -> Swift::AnyIterator<PXKit::Entry>
+  final public subscript(path: Swift::String) -> PXKit::Entry? {
     get
   }
-  #endif
-  public typealias Element = PXKit.Entry
-  public typealias Iterator = Swift.AnyIterator<PXKit.Entry>
+  public typealias Element = PXKit::Entry
+  public typealias Iterator = Swift::AnyIterator<PXKit::Entry>
 }
-extension PXKit.Archive {
-  final public func totalUnitCountForRemoving(_ entry: PXKit.Entry) -> Swift.Int64
-  final public func totalUnitCountForReading(_ entry: PXKit.Entry) -> Swift.Int64
-  final public func totalUnitCountForAddingItem(at url: Foundation.URL) -> Swift.Int64
+extension PXKit::Archive {
+  final public func totalUnitCountForRemoving(_ entry: PXKit::Entry) -> Swift::Int64
+  final public func totalUnitCountForReading(_ entry: PXKit::Entry) -> Swift::Int64
+  final public func totalUnitCountForAddingItem(at url: Foundation::URL) -> Swift::Int64
 }
 public protocol PXNetworkingRequestAdapter {
-  func px_adapt(_ urlRequest: Foundation.URLRequest) throws -> Foundation.URLRequest
+  func px_adapt(_ urlRequest: Foundation::URLRequest) throws -> Foundation::URLRequest
 }
-public typealias PXNetworkingRequestRetryCompletion = (_ shouldRetry: Swift.Bool, _ timeDelay: Foundation.TimeInterval) -> Swift.Void
+public typealias PXNetworkingRequestRetryCompletion = (_ shouldRetry: Swift::Bool, _ timeDelay: Foundation::TimeInterval) -> Swift::Void
 public protocol PXNetworkingRequestRetrier {
-  func px_should(_ manager: PXKit.PXNetworking.SessionManager, retry request: PXKit.PXNetworking.Request, with error: any Swift.Error, completion: @escaping PXKit.PXNetworkingRequestRetryCompletion)
+  func px_should(_ manager: PXKit::PXNetworking.PXKit::SessionManager, retry request: PXKit::PXNetworking.PXKit::Request, with error: any Swift::Error, completion: @escaping PXKit::PXNetworkingRequestRetryCompletion)
 }
-public typealias PXNetworkingHTTPHeaders = [Swift.String : Swift.String]
-extension PXKit.PXNetworking {
+public typealias PXNetworkingHTTPHeaders = [Swift::String : Swift::String]
+extension PXKit::PXNetworking {
   open class Request {
-    public typealias ProgressHandler = (Foundation.Progress) -> Swift.Void
-    open var delegate: PXKit.PXNetworking.TaskDelegate {
+    public typealias ProgressHandler = (Foundation::Progress) -> Swift::Void
+    open var delegate: PXKit::PXNetworking.PXKit::TaskDelegate {
       get
     }
-    #if compiler(>=5.3) && $NonescapableTypes
-    open var task: Foundation.URLSessionTask? {
+    open var task: Foundation::URLSessionTask? {
       get
     }
-    #endif
-    final public let session: Foundation.URLSession
-    #if compiler(>=5.3) && $NonescapableTypes
-    open var request: Foundation.URLRequest? {
+    final public let session: Foundation::URLSession
+    open var request: Foundation::URLRequest? {
       get
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    open var response: Foundation.HTTPURLResponse? {
+    open var response: Foundation::HTTPURLResponse? {
       get
     }
-    #endif
-    open var retryCount: Swift.UInt {
+    open var retryCount: Swift::UInt {
       get
     }
     @discardableResult
-    open func authenticate(user: Swift.String, password: Swift.String, persistence: Foundation.URLCredential.Persistence = .forSession) -> Self
+    open func authenticate(user: Swift::String, password: Swift::String, persistence: Foundation::URLCredential.Foundation::Persistence = .forSession) -> Self
     @discardableResult
-    open func authenticate(usingCredential credential: Foundation.URLCredential) -> Self
-    #if compiler(>=5.3) && $NonescapableTypes
-    open class func authorizationHeader(user: Swift.String, password: Swift.String) -> (key: Swift.String, value: Swift.String)?
-    #endif
+    open func authenticate(usingCredential credential: Foundation::URLCredential) -> Self
+    open class func authorizationHeader(user: Swift::String, password: Swift::String) -> (key: Swift::String, value: Swift::String)?
     open func resume()
     open func suspend()
     open func cancel()
     @objc deinit
   }
 }
-extension PXKit.PXNetworking.Request : Swift.CustomStringConvertible {
-  public var description: Swift.String {
+extension PXKit::PXNetworking.PXKit::Request : Swift::CustomStringConvertible {
+  public var description: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking.Request : Swift.CustomDebugStringConvertible {
-  public var debugDescription: Swift.String {
+extension PXKit::PXNetworking.PXKit::Request : Swift::CustomDebugStringConvertible {
+  public var debugDescription: Swift::String {
     get
   }
 }
-extension PXKit.PXNetworking {
-  open class DataRequest : PXKit.PXNetworking.Request {
-    #if compiler(>=5.3) && $NonescapableTypes
-    override open var request: Foundation.URLRequest? {
+extension PXKit::PXNetworking {
+  open class DataRequest : PXKit::PXNetworking.PXKit::Request {
+    override open var request: Foundation::URLRequest? {
       get
     }
-    #endif
-    open var progress: Foundation.Progress {
+    open var progress: Foundation::Progress {
       get
     }
-    #if compiler(>=5.3) && $NonescapableTypes
     @discardableResult
-    open func stream(closure: ((Foundation.Data) -> Swift.Void)? = nil) -> Self
-    #endif
+    open func stream(closure: ((Foundation::Data) -> Swift::Void)? = nil) -> Self
     @discardableResult
-    open func downloadProgress(queue: Dispatch.DispatchQueue = DispatchQueue.main, closure: @escaping PXKit.PXNetworking.DataRequest.ProgressHandler) -> Self
+    open func downloadProgress(queue: Dispatch::DispatchQueue = DispatchQueue.main, closure: @escaping PXKit::PXNetworking.PXKit::DataRequest.PXKit::ProgressHandler) -> Self
     @objc deinit
   }
-  open class DownloadRequest : PXKit.PXNetworking.Request {
-    public struct DownloadOptions : Swift.OptionSet, Swift.Sendable {
-      public let rawValue: Swift.UInt
-      public static let createIntermediateDirectories: PXKit.PXNetworking.DownloadRequest.DownloadOptions
-      public static let removePreviousFile: PXKit.PXNetworking.DownloadRequest.DownloadOptions
-      public init(rawValue: Swift.UInt)
-      public typealias ArrayLiteralElement = PXKit.PXNetworking.DownloadRequest.DownloadOptions
-      public typealias Element = PXKit.PXNetworking.DownloadRequest.DownloadOptions
-      public typealias RawValue = Swift.UInt
+  open class DownloadRequest : PXKit::PXNetworking.PXKit::Request {
+    public struct DownloadOptions : Swift::OptionSet, Swift::Sendable {
+      public let rawValue: Swift::UInt
+      public static let createIntermediateDirectories: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadOptions
+      public static let removePreviousFile: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadOptions
+      public init(rawValue: Swift::UInt)
+      public typealias ArrayLiteralElement = PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadOptions
+      public typealias Element = PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadOptions
+      public typealias RawValue = Swift::UInt
     }
-    public typealias DownloadFileDestination = (_ temporaryURL: Foundation.URL, _ response: Foundation.HTTPURLResponse) -> (destinationURL: Foundation.URL, options: PXKit.PXNetworking.DownloadRequest.DownloadOptions)
-    #if compiler(>=5.3) && $NonescapableTypes
-    override open var request: Foundation.URLRequest? {
+    public typealias DownloadFileDestination = (_ temporaryURL: Foundation::URL, _ response: Foundation::HTTPURLResponse) -> (destinationURL: Foundation::URL, options: PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadOptions)
+    override open var request: Foundation::URLRequest? {
       get
     }
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    open var resumeData: Foundation.Data? {
+    open var resumeData: Foundation::Data? {
       get
     }
-    #endif
-    open var progress: Foundation.Progress {
+    open var progress: Foundation::Progress {
       get
     }
     override open func cancel()
-    open func cancel(createResumeData: Swift.Bool)
+    open func cancel(createResumeData: Swift::Bool)
     @discardableResult
-    open func downloadProgress(queue: Dispatch.DispatchQueue = DispatchQueue.main, closure: @escaping PXKit.PXNetworking.DownloadRequest.ProgressHandler) -> Self
-    open class func suggestedDownloadDestination(for directory: Foundation.FileManager.SearchPathDirectory = .documentDirectory, in domain: Foundation.FileManager.SearchPathDomainMask = .userDomainMask) -> PXKit.PXNetworking.DownloadRequest.DownloadFileDestination
+    open func downloadProgress(queue: Dispatch::DispatchQueue = DispatchQueue.main, closure: @escaping PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::ProgressHandler) -> Self
+    open class func suggestedDownloadDestination(for directory: Foundation::FileManager.Foundation::SearchPathDirectory = .documentDirectory, in domain: Foundation::FileManager.Foundation::SearchPathDomainMask = .userDomainMask) -> PXKit::PXNetworking.PXKit::DownloadRequest.PXKit::DownloadFileDestination
     @objc deinit
   }
-  open class UploadRequest : PXKit.PXNetworking.DataRequest {
-    #if compiler(>=5.3) && $NonescapableTypes
-    override open var request: Foundation.URLRequest? {
+  open class UploadRequest : PXKit::PXNetworking.PXKit::DataRequest {
+    override open var request: Foundation::URLRequest? {
       get
     }
-    #endif
-    open var uploadProgress: Foundation.Progress {
+    open var uploadProgress: Foundation::Progress {
       get
     }
     @discardableResult
-    open func uploadProgress(queue: Dispatch.DispatchQueue = DispatchQueue.main, closure: @escaping PXKit.PXNetworking.UploadRequest.ProgressHandler) -> Self
+    open func uploadProgress(queue: Dispatch::DispatchQueue = DispatchQueue.main, closure: @escaping PXKit::PXNetworking.PXKit::UploadRequest.PXKit::ProgressHandler) -> Self
     @objc deinit
   }
 }
-extension PXKit.PXNetworking {
+extension PXKit::PXNetworking {
   @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
-  open class StreamRequest : PXKit.PXNetworking.Request {
+  open class StreamRequest : PXKit::PXNetworking.PXKit::Request {
     @objc deinit
   }
 }
-extension PXKit.Entry.EntryType : Swift.Equatable {}
-extension PXKit.Entry.EntryType : Swift.Hashable {}
-extension PXKit.Entry.EntryType : Swift.RawRepresentable {}
-extension PXKit.PXNetworking.NetworkReachabilityManager.ConnectionType : Swift.Equatable {}
-extension PXKit.PXNetworking.NetworkReachabilityManager.ConnectionType : Swift.Hashable {}
-extension PXKit.PXNetworking.ImageDownloader.DownloadPrioritization : Swift.Equatable {}
-extension PXKit.PXNetworking.ImageDownloader.DownloadPrioritization : Swift.Hashable {}
-extension PXKit.PXNetworking.AFIError : Swift.Equatable {}
-extension PXKit.PXNetworking.AFIError : Swift.Hashable {}
-extension PXKit.PXHost : Swift.Equatable {}
-extension PXKit.PXHost : Swift.Hashable {}
-extension PXKit.PXHost : Swift.RawRepresentable {}
-extension PXKit.PXNetworking.HTTPMethod : Swift.Equatable {}
-extension PXKit.PXNetworking.HTTPMethod : Swift.Hashable {}
-extension PXKit.PXNetworking.HTTPMethod : Swift.RawRepresentable {}
-extension PXKit.PXNetworking.URLEncoding.Destination : Swift.Equatable {}
-extension PXKit.PXNetworking.URLEncoding.Destination : Swift.Hashable {}
-extension PXKit.PXNetworking.URLEncoding.ArrayEncoding : Swift.Equatable {}
-extension PXKit.PXNetworking.URLEncoding.ArrayEncoding : Swift.Hashable {}
-extension PXKit.PXNetworking.URLEncoding.BoolEncoding : Swift.Equatable {}
-extension PXKit.PXNetworking.URLEncoding.BoolEncoding : Swift.Hashable {}
-extension PXKit.CompressionMethod : Swift.Equatable {}
-extension PXKit.CompressionMethod : Swift.Hashable {}
-extension PXKit.CompressionMethod : Swift.RawRepresentable {}
-extension PXKit.Archive.ArchiveError : Swift.Equatable {}
-extension PXKit.Archive.ArchiveError : Swift.Hashable {}
-extension PXKit.Archive.AccessMode : Swift.Equatable {}
-extension PXKit.Archive.AccessMode : Swift.Hashable {}
-extension PXKit.Archive.AccessMode : Swift.RawRepresentable {}
+extension PXKit::Entry.PXKit::EntryType : Swift::Equatable {}
+extension PXKit::Entry.PXKit::EntryType : Swift::Hashable {}
+extension PXKit::Entry.PXKit::EntryType : Swift::RawRepresentable {}
+extension PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::ConnectionType : Swift::Equatable {}
+extension PXKit::PXNetworking.PXKit::NetworkReachabilityManager.PXKit::ConnectionType : Swift::Hashable {}
+extension PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::DownloadPrioritization : Swift::Equatable {}
+extension PXKit::PXNetworking.PXKit::ImageDownloader.PXKit::DownloadPrioritization : Swift::Hashable {}
+extension PXKit::PXNetworking.PXKit::AFIError : Swift::Equatable {}
+extension PXKit::PXNetworking.PXKit::AFIError : Swift::Hashable {}
+extension PXKit::PXHost : Swift::Equatable {}
+extension PXKit::PXHost : Swift::Hashable {}
+extension PXKit::PXHost : Swift::RawRepresentable {}
+extension PXKit::PXNetworking.PXKit::HTTPMethod : Swift::Equatable {}
+extension PXKit::PXNetworking.PXKit::HTTPMethod : Swift::Hashable {}
+extension PXKit::PXNetworking.PXKit::HTTPMethod : Swift::RawRepresentable {}
+extension PXKit::PXNetworking.PXKit::URLEncoding.PXKit::Destination : Swift::Equatable {}
+extension PXKit::PXNetworking.PXKit::URLEncoding.PXKit::Destination : Swift::Hashable {}
+extension PXKit::PXNetworking.PXKit::URLEncoding.PXKit::ArrayEncoding : Swift::Equatable {}
+extension PXKit::PXNetworking.PXKit::URLEncoding.PXKit::ArrayEncoding : Swift::Hashable {}
+extension PXKit::PXNetworking.PXKit::URLEncoding.PXKit::BoolEncoding : Swift::Equatable {}
+extension PXKit::PXNetworking.PXKit::URLEncoding.PXKit::BoolEncoding : Swift::Hashable {}
+extension PXKit::CompressionMethod : Swift::Equatable {}
+extension PXKit::CompressionMethod : Swift::Hashable {}
+extension PXKit::CompressionMethod : Swift::RawRepresentable {}
+extension PXKit::Archive.PXKit::ArchiveError : Swift::Equatable {}
+extension PXKit::Archive.PXKit::ArchiveError : Swift::Hashable {}
+extension PXKit::Archive.PXKit::AccessMode : Swift::Equatable {}
+extension PXKit::Archive.PXKit::AccessMode : Swift::Hashable {}
+extension PXKit::Archive.PXKit::AccessMode : Swift::RawRepresentable {}

@@ -1,6 +1,6 @@
 [![N|Solid](https://app-dev.aptrinsic.com/home/gainsight-px-logo.svg)](https://app.aptrinsic.com)
 
-![version](https://img.shields.io/badge/version-2.0.1-blue.svg)
+![version](https://img.shields.io/badge/version-2-blue.svg)
 
 # Installation
 
@@ -8,7 +8,7 @@
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Gainsight-Central/px-ios.git", from: "2.0.1")
+    .package(url: "https://github.com/Gainsight-Central/px-ios.git", from: "2.0.2")
 ]
 ```
 
@@ -30,7 +30,7 @@ Run a `pod install` from your terminal, or from CocoaPods.app.
 You can also still use the previous method of installing the framework from GitHub:
 
 ```rb
-pod 'PXKit', :git => 'git@github.com:Gainsight-Central/px-ios.git', tag: '2.0.1'
+pod 'PXKit', :git => 'git@github.com:Gainsight-Central/px-ios.git', tag: '2.0.2'
 ```
 
 > or
