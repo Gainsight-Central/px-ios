@@ -1,5 +1,8 @@
 # Release Notes
 
+## Version 2.0.2
+* Fixed an app freeze that occurred when `engagements(enable:)` was called while the SDK was initializing.
+
 ## Version 2.0.1
 * Fixed YouTube videos not playing in engagements.
 * Fixed a crash on app launch that occurred when `identify()` was called while the SDK was initializing.

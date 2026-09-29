@@ -7,5 +7,4 @@ framework module PXKit {
 
 module PXKit.Swift {
   header "PXKit-Swift.h"
-  requires objc
 }
