@@ -1,5 +1,9 @@
 # Release Notes
 
+## Version 2.0.3
+* Fixed the Product Mapper reporting all elements as off-screen on iOS 26.
+* Fixed guides mapped to a screen not appearing after navigating away from and back to that screen.
+
 ## Version 2.0.2
 * Fixed an app freeze that occurred when `engagements(enable:)` was called while the SDK was initializing.
 
