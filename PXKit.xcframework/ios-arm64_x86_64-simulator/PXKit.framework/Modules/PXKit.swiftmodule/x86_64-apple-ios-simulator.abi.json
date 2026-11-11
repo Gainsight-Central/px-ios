@@ -60594,7 +60594,7 @@
       "kind": "StringLiteral",
       "offset": 172,
       "length": 7,
-      "value": "\"2.0.3\""
+      "value": "\"2.0.4\""
     },
     {
       "filePath": "\/Users\/vpatil\/Documents\/Development\/Gainsight\/px\/ios-sdk\/GainsightPX\/GainsightPX\/GlobalContext\/GlobalContext.swift",

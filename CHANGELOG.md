@@ -1,5 +1,8 @@
 # Release Notes
 
+## Version 2.0.4
+* Fixed an issue where some users could fail to be recognized after upgrading from an earlier SDK version.
+
 ## Version 2.0.3
 * Fixed the Product Mapper reporting all elements as off-screen on iOS 26.
 * Fixed guides mapped to a screen not appearing after navigating away from and back to that screen.
